@@ -2,10 +2,6 @@ import './globals.css';
 
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
-import { Toaster } from 'sonner';
-import { GoogleAnalytics } from '@next/third-parties/google';
-import { TopLoader } from '@/components/top-loader';
-import { config } from '@/lib/config';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -72,10 +68,7 @@ export default function RootLayout(props: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <TopLoader />
         {children}
-        <Toaster richColors />
-        <GoogleAnalytics gaId={config.googleTrackingId} />
       </body>
     </html>
   );

@@ -1,29 +1,29 @@
-import { Fragment, type CSSProperties } from 'react';
+import { deepMerge } from '@antfu/utils';
 import {
-  Text,
-  Html,
-  Head,
   Body,
-  Font,
+  Button,
+  Column,
   Container,
-  Link,
+  Font,
+  Head,
   Heading,
   Hr,
-  Button,
+  Html,
+  HtmlProps,
   Img,
+  Link,
   Preview,
   Row,
-  Column,
   Section,
-  HtmlProps,
+  Text,
 } from '@react-email/components';
 import { renderAsync as reactEmailRenderAsync } from '@react-email/render';
 import type { JSONContent } from '@tiptap/core';
-import { deepMerge } from '@antfu/utils';
-import { generateKey } from './utils';
+import { parse } from 'node-html-parser';
+import { Fragment, type CSSProperties } from 'react';
 import type { MetaDescriptors } from './meta';
 import { meta } from './meta';
-import { parse } from 'node-html-parser';
+import { generateKey } from './utils';
 
 interface NodeOptions {
   parent?: JSONContent;
@@ -1786,6 +1786,95 @@ export class Maily {
       >
         {image}
       </a>
+    );
+  }
+
+  private table(node: JSONContent, options?: NodeOptions): JSX.Element {
+    const show = this.shouldShow(node, options);
+    if (!show) return <></>;
+
+    return (
+      <table
+        style={{
+          width: '100%',
+          borderCollapse: 'separate',
+          borderSpacing: '0',
+          margin: '24px 0',
+          border: '1px solid #e2e8f0',
+          ...antialiased,
+        }}
+        align="center"
+        width="100%"
+        border={0}
+        cellPadding="0"
+        cellSpacing="0"
+        role="presentation"
+      >
+        <tbody>
+          {node.content?.map((row, i) =>
+            this.renderNode(row, { ...options, parent: node })
+          )}
+        </tbody>
+      </table>
+    );
+  }
+
+  private tableRow(node: JSONContent, options?: NodeOptions): JSX.Element {
+    return (
+      <tr
+        style={{
+          width: '100%',
+        }}
+      >
+        {node.content?.map((cell, i) =>
+          this.renderNode(cell, { ...options, parent: node })
+        )}
+      </tr>
+    );
+  }
+
+  private tableHeader(node: JSONContent, options?: NodeOptions): JSX.Element {
+    const content = node.content?.map((n) => this.renderNode(n, options));
+
+    return (
+      <th
+        align="left"
+        style={{
+          padding: '12px 16px',
+          borderBottom: '1px solid #e9e9e9',
+          backgroundColor: '#f8f8f8',
+          fontSize: this.config.theme?.fontSize?.paragraph?.size,
+          lineHeight: this.config.theme?.fontSize?.paragraph?.lineHeight,
+          fontWeight: 600,
+          textAlign: 'left',
+          verticalAlign: 'top',
+          ...antialiased,
+        }}
+      >
+        {content}
+      </th>
+    );
+  }
+
+  private tableCell(node: JSONContent, options?: NodeOptions): JSX.Element {
+    const content = node.content?.map((n) => this.renderNode(n, options));
+
+    return (
+      <td
+        align="left"
+        style={{
+          padding: '12px 16px',
+          borderBottom: '1px solid #e9e9e9',
+          color: this.config.theme?.colors?.paragraph,
+          fontSize: this.config.theme?.fontSize?.paragraph?.size,
+          lineHeight: this.config.theme?.fontSize?.paragraph?.lineHeight,
+          textAlign: 'left',
+          verticalAlign: 'top',
+          ...antialiased,
+        }}
+      >
+        {content}
+      </td>
     );
   }
 }

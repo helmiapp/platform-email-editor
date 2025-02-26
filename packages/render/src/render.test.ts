@@ -213,13 +213,100 @@ describe('render', () => {
         paragraph: '18px',
       },
     };
-
     const maily = new Maily(content);
-    maily.setTheme(customTheme);
+    maily.setTheme({
+      colors: {
+        heading: 'rgb(255, 0, 0)',
+        paragraph: 'rgb(0, 255, 0)',
+      },
+      fontSize: {
+        paragraph: {
+          size: '18px',
+          lineHeight: '1.5',
+        },
+      },
+    });
     const result = await maily.render();
 
     expect(result).toContain('color:rgb(255, 0, 0)');
     expect(result).toContain('color:rgb(0, 255, 0)');
     expect(result).toContain('font-size:18px');
+  });
+
+  it('should render a table with header row', async () => {
+    const content = {
+      type: 'doc',
+      content: [
+        {
+          type: 'table',
+          content: [
+            {
+              type: 'tableRow',
+              content: [
+                {
+                  type: 'tableHeader',
+                  content: [{ type: 'text', text: 'Name' }],
+                },
+                {
+                  type: 'tableHeader',
+                  content: [{ type: 'text', text: 'Email' }],
+                },
+              ],
+            },
+            {
+              type: 'tableRow',
+              content: [
+                {
+                  type: 'tableCell',
+                  content: [{ type: 'text', text: 'John Doe' }],
+                },
+                {
+                  type: 'tableCell',
+                  content: [{ type: 'text', text: 'john@example.com' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+
+    const maily = new Maily(content);
+    maily.setTheme({
+      colors: {
+        paragraph: '#374151',
+      },
+      fontSize: {
+        paragraph: {
+          size: '14px',
+          lineHeight: '20px',
+        },
+      },
+    });
+
+    const result = await maily.render();
+
+    // Check table structure
+    expect(result).toContain('<table');
+    expect(result).toContain('<tbody>');
+    expect(result).toContain('<tr');
+    expect(result).toContain('<th');
+    expect(result).toContain('<td');
+
+    // Check content
+    expect(result).toContain('Name');
+    expect(result).toContain('Email');
+    expect(result).toContain('John Doe');
+    expect(result).toContain('john@example.com');
+
+    // Check styling
+    expect(result).toContain('border-collapse:separate');
+    expect(result).toContain('border-spacing:0');
+    expect(result).toContain('border:1px solid #e2e8f0');
+    expect(result).toContain('background-color:#f8f8f8'); // Header background
+    expect(result).toContain('border-bottom:1px solid #e9e9e9');
+    expect(result).toContain('font-size:14px');
+    expect(result).toContain('line-height:20px');
+    expect(result).toContain('color:#374151'); // Theme color
   });
 });

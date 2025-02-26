@@ -1,20 +1,27 @@
 import { cn } from '@/editor/utils/classname';
 
-type Props = {
-  type?: 'horizontal' | 'vertical';
+type DividerProps = {
+  orientation?: 'horizontal' | 'vertical';
+  type?: 'solid' | 'dashed';
   className?: string;
 };
 
-export function Divider(props: Props) {
-  const { type = 'vertical', className } = props;
-
+export function Divider({
+  orientation = 'horizontal',
+  type = 'solid',
+  className,
+}: DividerProps) {
   return (
     <div
       className={cn(
-        'mly-shrink-0 mly-bg-gray-200',
-        type === 'vertical' ? 'mly-mx-0.5 mly-w-px' : 'mly-my-0.5 mly-h-px',
+        'mly-bg-gray-200',
+        orientation === 'horizontal' && 'mly-h-[1px] mly-w-full',
+        orientation === 'vertical' &&
+          'mly-grow-1 mly-h-full mly-min-h-[1px] mly-w-[1px]',
+        type === 'dashed' && 'mly-border-dashed',
         className
       )}
+      role="separator"
     />
   );
 }

@@ -7,14 +7,23 @@ export const PlaceholderExtension = Placeholder.configure({
     } else if (node.type.name === 'htmlCodeBlock') {
       return 'Type your HTML code...';
     } else if (
-      ['columns', 'column', 'section', 'repeat', 'show', 'blockquote'].includes(
-        node.type.name
-      )
+      [
+        'columns',
+        'column',
+        'section',
+        'repeat',
+        'show',
+        'blockquote',
+        'table',
+        'tableRow',
+        'tableCell',
+        'tableHeader',
+      ].includes(node.type.name)
     ) {
       return '';
     }
 
     return 'Write something or / to see commands';
   },
-  includeChildren: true,
+  includeChildren: false, // Was true, but it messes with the table tiptap extension, because each cell has p inside
 });

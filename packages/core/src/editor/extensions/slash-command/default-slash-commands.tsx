@@ -1,9 +1,20 @@
-import { FootprintsIcon, Heading1 } from 'lucide-react';
+import { social } from '@/blocks';
 import { button, linkCard } from '@/blocks/button';
 import { htmlCodeBlock } from '@/blocks/code';
+import {
+  footerCommunityFeedbackCta,
+  footerCompanySignature,
+  footerCopyrightText,
+} from '@/blocks/footers';
+import {
+  headerLogoWithCoverImage,
+  headerLogoWithTextHorizontal,
+  headerLogoWithTextVertical,
+} from '@/blocks/headers';
 import { image, inlineImage, logo } from '@/blocks/image';
 import { columns, divider, repeat, section, spacer } from '@/blocks/layout';
 import { bulletList, orderedList } from '@/blocks/list';
+import { table } from '@/blocks/table';
 import { BlockGroupItem } from '@/blocks/types';
 import {
   blockquote,
@@ -15,16 +26,7 @@ import {
   heading3,
   text,
 } from '@/blocks/typography';
-import {
-  headerLogoWithCoverImage,
-  headerLogoWithTextHorizontal,
-  headerLogoWithTextVertical,
-} from '@/blocks/headers';
-import {
-  footerCopyrightText,
-  footerCommunityFeedbackCta,
-  footerCompanySignature,
-} from '@/blocks/footers';
+import { FootprintsIcon, Heading1 } from 'lucide-react';
 
 export const DEFAULT_SLASH_COMMANDS: BlockGroupItem[] = [
   {
@@ -41,6 +43,8 @@ export const DEFAULT_SLASH_COMMANDS: BlockGroupItem[] = [
       inlineImage,
       columns,
       section,
+      table,
+      social,
       repeat,
       divider,
       spacer,

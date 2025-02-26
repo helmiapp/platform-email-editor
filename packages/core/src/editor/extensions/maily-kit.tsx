@@ -1,32 +1,31 @@
 import { AnyExtension, Extension } from '@tiptap/core';
 
-import StarterKit from '@tiptap/starter-kit';
+import Document from '@tiptap/extension-document';
+import Dropcursor from '@tiptap/extension-dropcursor';
+import Focus from '@tiptap/extension-focus';
+import Heading from '@tiptap/extension-heading';
 import ListItem from '@tiptap/extension-list-item';
 import Paragraph from '@tiptap/extension-paragraph';
 import TextAlign from '@tiptap/extension-text-align';
 import TextStyle from '@tiptap/extension-text-style';
-import Heading from '@tiptap/extension-heading';
 import Underline from '@tiptap/extension-underline';
-import Document from '@tiptap/extension-document';
-import Focus from '@tiptap/extension-focus';
-import Dropcursor from '@tiptap/extension-dropcursor';
+import StarterKit from '@tiptap/starter-kit';
 
-import { Color } from './color';
-import { HorizontalRule } from './horizontal-rule';
-import { Footer } from '../nodes/footer';
-import { Spacer } from '../nodes/spacer';
-import { LinkCardExtension, LinkCardOptions } from './link-card';
-import { ColumnsExtension } from '../nodes/columns/columns';
-import { ColumnExtension } from '../nodes/columns/column';
-import { SectionExtension } from '../nodes/section/section';
+import { LinkOptions } from '@tiptap/extension-link';
 import { ButtonExtension } from '../nodes/button/button';
-import { LogoExtension } from '../nodes/logo/logo';
+import { ColumnExtension } from '../nodes/columns/column';
+import { ColumnsExtension } from '../nodes/columns/columns';
+import { Footer } from '../nodes/footer';
+import { HeadingExtension } from '../nodes/heading/heading';
 import { ImageExtension } from '../nodes/image/image';
 import { LinkExtension } from '../nodes/link';
-import { LinkOptions } from '@tiptap/extension-link';
-import { HeadingExtension } from '../nodes/heading/heading';
+import { LogoExtension } from '../nodes/logo/logo';
 import { ParagraphExtension } from '../nodes/paragraph/paragraph';
-import { RepeatExtension } from '../nodes/repeat/repeat';
+import { SectionExtension } from '../nodes/section/section';
+import { Spacer } from '../nodes/spacer';
+import { Color } from './color';
+import { HorizontalRule } from './horizontal-rule';
+import { LinkCardExtension, LinkCardOptions } from './link-card';
 
 export type MailyKitOptions = {
   linkCard?: Partial<LinkCardOptions> | false;
@@ -122,9 +121,9 @@ export const MailyKit = Extension.create<MailyKitOptions>({
       extensions.push(LinkCardExtension.configure(this.options.linkCard));
     }
 
-    if (this.options.repeat !== false) {
-      extensions.push(RepeatExtension);
-    }
+    // if (this.options.repeat !== false) {
+    //   extensions.push(RepeatExtension);
+    // }
 
     if (this.options.section !== false) {
       extensions.push(SectionExtension);

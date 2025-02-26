@@ -295,7 +295,17 @@
   .is-editor-empty:first-child:where(.node-htmlCodeBlock):not(
       [data-active-tab='code']
     )::before {
-    content: ''
+    content: '';
+  }
+
+  [data-type='table'] {
+    &.has-focus [data-type='tableCell'] {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    [data-type='tableRow'].has-focus {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
   }
 
   [data-type='columns'] .is-empty::before,

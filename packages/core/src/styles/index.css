@@ -1,6 +1,9 @@
 :root {
   --placeholder-color: #adb5bd;
   --bg-color: #ffffff;
+  --bg-color-secondary: #f8f8f8;
+  --border-color: #e9e9e9;
+  --selected-color: #e9e9e9;
 
   --variable-icon-size: 12px;
   --variable-icon-gap: 4px;
@@ -298,16 +301,6 @@
     content: '';
   }
 
-  [data-type='table'] {
-    &.has-focus [data-type='tableCell'] {
-      background-color: rgba(0, 0, 0, 0.04);
-    }
-
-    [data-type='tableRow'].has-focus {
-      background-color: rgba(0, 0, 0, 0.04);
-    }
-  }
-
   [data-type='columns'] .is-empty::before,
   [data-type='section'] .is-empty::before {
     --l-threshold: 0.66;
@@ -503,4 +496,72 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* Table */
+/* Basic editor styles */
+.tiptap:first-child {
+  margin-top: 0;
+}
+
+/* Table-specific styling */
+.tiptap table {
+  border-collapse: collapse;
+  margin: 0;
+  overflow: hidden;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.tiptap table td,
+.tiptap table th {
+  border: 1px solid var(--border-color);
+  box-sizing: border-box;
+  min-width: 1em;
+  padding: 6px 8px;
+  position: relative;
+  vertical-align: top;
+}
+.tiptap table td > *,
+.tiptap table th > * {
+  margin: 0 !important;
+}
+
+.tiptap table th {
+  background-color: var(--bg-color-secondary);
+  height: fit-content;
+  font-weight: bold;
+  text-align: left;
+}
+
+.tiptap table .selectedCell:after {
+  background: var(--selected-color);
+  content: '';
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.tiptap table .column-resize-handle {
+  background-color: var(--selected-color);
+  bottom: -2px;
+  pointer-events: none;
+  position: absolute;
+  right: -2px;
+  top: 0;
+  width: 4px;
+}
+
+.tiptap .tableWrapper {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+
+.tiptap.resize-cursor {
+  cursor: ew-resize;
+  cursor: col-resize;
 }

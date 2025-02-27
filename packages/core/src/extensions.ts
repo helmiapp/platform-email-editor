@@ -19,3 +19,5 @@ export * from './editor/nodes/section/section';
 export * from './editor/nodes/spacer';
 export * from './editor/nodes/variable/variable';
 export * from './editor/nodes/variable/variable-suggestions';
+
+export * from './editor/extensions/upload-image';

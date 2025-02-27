@@ -1,4 +1,4 @@
-import { social } from '@/blocks';
+import { social, UploadImageBlock } from '@/blocks';
 import { button, linkCard } from '@/blocks/button';
 import { htmlCodeBlock } from '@/blocks/code';
 import {
@@ -40,6 +40,7 @@ export const DEFAULT_SLASH_COMMANDS: BlockGroupItem[] = [
       // image,
       // logo,
       // inlineImage,
+      UploadImageBlock,
       columns,
       section,
       table,

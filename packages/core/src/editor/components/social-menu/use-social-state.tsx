@@ -1,88 +1,86 @@
-import { Editor } from '@tiptap/react';
+import { Editor, useEditorState } from '@tiptap/react';
+import deepEql from 'fast-deep-equal';
 
-export interface SocialPlatform {
-  id: string;
-  name: string;
-  icon: string;
-  url: string;
-  isCustom?: boolean;
-}
-
-export const DEFAULT_SOCIALS: Record<string, Omit<SocialPlatform, 'url'>> = {
+export const SOCIALS_OPTIONS = {
+  website: {
+    icon: 'https://cdn-icons-png.flaticon.com/512/1006/1006771.png',
+    url: '',
+  },
   facebook: {
-    id: 'facebook',
-    name: 'Facebook',
-    icon: 'https://cdn.usemaily.com/images/icons/facebook.png',
+    icon: 'https://cdn-icons-png.flaticon.com/512/5968/5968764.png',
+    url: 'https://www.facebook.com/',
   },
   twitter: {
-    id: 'twitter',
-    name: 'Twitter',
-    icon: 'https://cdn.usemaily.com/images/icons/twitter.png',
+    icon: 'https://cdn-icons-png.flaticon.com/512/5968/5968830.png',
+    url: 'https://twitter.com/',
   },
   instagram: {
-    id: 'instagram',
-    name: 'Instagram',
-    icon: 'https://cdn.usemaily.com/images/icons/instagram.png',
+    icon: 'https://cdn-icons-png.flaticon.com/512/2111/2111463.png',
+    url: 'https://www.instagram.com/',
   },
   linkedin: {
-    id: 'linkedin',
-    name: 'LinkedIn',
-    icon: 'https://cdn.usemaily.com/images/icons/linkedin.png',
+    icon: 'https://cdn-icons-png.flaticon.com/512/4138/4138130.png',
+    url: 'https://www.linkedin.com/',
   },
   youtube: {
-    id: 'youtube',
-    name: 'YouTube',
-    icon: 'https://cdn.usemaily.com/images/icons/youtube.png',
+    icon: 'https://cdn-icons-png.flaticon.com/512/174/174883.png',
+    url: 'https://www.youtube.com/',
   },
   telegram: {
-    id: 'telegram',
-    name: 'Telegram',
-    icon: 'https://cdn.usemaily.com/images/icons/telegram.png',
+    icon: 'https://cdn-icons-png.flaticon.com/512/2111/2111646.png',
+    url: 'https://telegram.org/',
   },
-  whatsapp: {
-    id: 'whatsapp',
-    name: 'WhatsApp',
-    icon: 'https://cdn.usemaily.com/images/icons/whatsapp.png',
+  custom: {
+    icon: 'https://cdn-icons-png.flaticon.com/512/471/471664.png',
+    url: '',
   },
+} as const;
+
+export interface SocialState {
+  socials: Array<{
+    type: string;
+    url: string;
+    icon?: string;
+    size?: number;
+  }>;
+  size?: number;
+}
+
+export const useSocialState = (editor: Editor) => {
+  const states = useEditorState({
+    editor,
+    selector: ({ editor }) => {
+      const attrs = editor.getAttributes('socials');
+      const useMonochrome = attrs.useMonochrome || false;
+
+      return {
+        socials: attrs.socials,
+        size: attrs.size || 20,
+        useMonochrome,
+      };
+    },
+
+    equalityFn: deepEql,
+  });
+
+  return states;
 };
 
-export function useSocialState(editor: Editor) {
-  const node = editor.state.selection.$anchor.node();
-  if (!node || (node.type.name !== 'socials' && node.type.name !== 'social')) {
-    return null;
+export const getImage = async (url: string): Promise<string> => {
+  try {
+    const domain = new URL(url).hostname;
+    const faviconUrl = `https://${domain}/favicon.ico`;
+
+    // Test if favicon exists
+    const response = await fetch(faviconUrl, { method: 'HEAD' });
+
+    console.log(faviconUrl, response);
+    if (!response.ok) {
+      throw new Error('Favicon not found');
+    }
+
+    return faviconUrl;
+  } catch {
+    return SOCIALS_OPTIONS.website.icon;
   }
-
-  const isParentSocials = node.type.name === 'socials';
-  const socialsNode = isParentSocials
-    ? node
-    : editor.state.selection.$anchor.node(-1);
-
-  const activeSocials = socialsNode.content.content.map((social: any) => ({
-    id: social.attrs.platformId,
-    name: social.attrs.name,
-    icon: social.attrs.icon,
-    url: social.attrs.url,
-    isCustom: social.attrs.isCustom,
-  }));
-
-  const addSocial = (platform: SocialPlatform) => {
-    editor.chain().focus().addSocial(platform).run();
-  };
-
-  const updateSocial = (id: string, updates: Partial<SocialPlatform>) => {
-    editor.chain().focus().updateSocial(id, updates).run();
-  };
-
-  const removeSocial = (id: string) => {
-    editor.chain().focus().removeSocial(id).run();
-  };
-
-  return {
-    activeSocials,
-    addSocial,
-    updateSocial,
-    removeSocial,
-    selectedSocialId:
-      node.type.name === 'social' ? node.attrs.platformId : null,
-  };
-}
+};

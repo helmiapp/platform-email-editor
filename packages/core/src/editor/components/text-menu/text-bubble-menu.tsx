@@ -1,5 +1,6 @@
 import { ColumnExtension } from '@/editor/nodes/columns/column';
 import { ColumnsExtension } from '@/editor/nodes/columns/columns';
+import { RepeatExtension } from '@/editor/nodes/repeat/repeat';
 import { SectionExtension } from '@/editor/nodes/section/section';
 import { isCustomNodeSelected } from '@/editor/utils/is-custom-node-selected';
 import { isTextSelected } from '@/editor/utils/is-text-selected';
@@ -9,7 +10,6 @@ import { SVGIcon } from '../icons/grid-lines';
 import { Divider } from '../ui/divider';
 import { TooltipProvider } from '../ui/tooltip';
 import { TextBubbleContent } from './text-bubble-content';
-import { RepeatExtension } from '@/editor/nodes/repeat/repeat';
 import { TurnIntoBlock } from './turn-into-block';
 import { useTurnIntoBlockOptions } from './use-turn-into-block-options';
 
@@ -31,7 +31,7 @@ export type EditorBubbleMenuProps = Omit<BubbleMenuProps, 'children'> & {
   appendTo?: React.RefObject<any>;
 };
 
-export function TextBubbleMenu(props: EditorBubbleMenuProps) {
+export const TextBubbleMenu = (props: EditorBubbleMenuProps) => {
   const { editor, appendTo } = props;
 
   if (!editor) {
@@ -41,14 +41,22 @@ export function TextBubbleMenu(props: EditorBubbleMenuProps) {
   const bubbleMenuProps: EditorBubbleMenuProps = {
     ...props,
     ...(appendTo ? { appendTo: appendTo.current } : {}),
-    pluginKey: 'text-menu',
-    shouldShow: ({ editor, from, view }) => {
-      if (!view || editor.view.dragging) {
+    shouldShow: ({ editor, state, from, to }) => {
+      const { selection } = state;
+      const { empty } = selection;
+
+      // Don't show if selection is empty or editor is not editable
+      if (empty || !editor.isEditable) {
         return false;
       }
 
-      const domAtPos = view.domAtPos(from || 0).node as HTMLElement;
-      const nodeDOM = view.nodeDOM(from || 0) as HTMLElement;
+      // Don't show if a social node is selected
+      if (editor.isActive('socials')) {
+        return false;
+      }
+
+      const domAtPos = editor.view.domAtPos(from || 0).node as HTMLElement;
+      const nodeDOM = editor.view.nodeDOM(from || 0) as HTMLElement;
       const node = nodeDOM || domAtPos;
 
       if (isCustomNodeSelected(editor, node) || !editor.isEditable) {
@@ -106,4 +114,4 @@ export function TextBubbleMenu(props: EditorBubbleMenuProps) {
       </TooltipProvider>
     </BubbleMenu>
   );
-}
+};

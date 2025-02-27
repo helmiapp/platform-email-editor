@@ -5,6 +5,7 @@ function App() {
     <div className="flex h-screen w-full items-center justify-center p-10">
       <div className="bg-background text-foreground h-full w-full max-w-full rounded-lg border border-red-500 p-10">
         <Editor
+          onUpdate={(e) => console.log(e.getJSON())}
           config={{
             hasMenuBar: false,
             contentClassName:

@@ -26,6 +26,7 @@ import { Spacer } from '../nodes/spacer';
 import { Color } from './color';
 import { HorizontalRule } from './horizontal-rule';
 import { LinkCardExtension, LinkCardOptions } from './link-card';
+import { SocialExtension } from './social';
 
 export type MailyKitOptions = {
   linkCard?: Partial<LinkCardOptions> | false;
@@ -156,6 +157,8 @@ export const MailyKit = Extension.create<MailyKitOptions>({
     if (this.options.link !== false) {
       extensions.push(LinkExtension.configure(this.options.link));
     }
+
+    extensions.push(SocialExtension);
 
     return extensions;
   },

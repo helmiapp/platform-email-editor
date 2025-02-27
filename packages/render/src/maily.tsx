@@ -282,6 +282,13 @@ export type LinkValues = Map<string, string>;
 export type PayloadValue = Record<string, any> | boolean;
 export type PayloadValues = Map<string, PayloadValue>;
 
+interface Social {
+  type: string;
+  url: string;
+  icon?: string;
+  size?: number;
+}
+
 export class Maily {
   private readonly content: JSONContent;
   private config: MailyConfig = {
@@ -1875,6 +1882,53 @@ export class Maily {
       >
         {content}
       </td>
+    );
+  }
+
+  private socials(node: JSONContent, options?: NodeOptions): JSX.Element {
+    const show = this.shouldShow(node, options);
+    if (!show) {
+      return <></>;
+    }
+
+    const { socials = [], size = 20 } = node.attrs || {};
+
+    if (!socials.length) {
+      return <></>;
+    }
+
+    return (
+      <Section style={{ textAlign: 'center', padding: '10px 0' }}>
+        <Row>
+          <Column>
+            <div style={{ display: 'inline-block' }}>
+              {(socials as Social[]).map((social, index) => (
+                <Link
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  style={{
+                    display: 'inline-block',
+                    margin: '0 5px',
+                    textDecoration: 'none',
+                  }}
+                >
+                  <Img
+                    src={social.icon}
+                    width={size * 2}
+                    height={size * 2}
+                    alt={social.type}
+                    style={{
+                      borderRadius: '50%',
+                      border: '1px solid #e2e8f0',
+                    }}
+                  />
+                </Link>
+              ))}
+            </div>
+          </Column>
+        </Row>
+      </Section>
     );
   }
 }

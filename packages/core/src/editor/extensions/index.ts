@@ -8,7 +8,8 @@ import { MailyKit } from './maily-kit';
 import { PlaceholderExtension } from './placeholder';
 import { SlashCommandExtension } from './slash-command/slash-command';
 import { getSlashCommandSuggestions } from './slash-command/slash-command-view';
-import { SocialExtension, SocialsExtension } from './social';
+
+import { SocialExtension } from './social';
 import {
   TableCellExtension,
   TableExtension,
@@ -44,7 +45,6 @@ export function extensions(props: ExtensionsProps) {
     TableHeaderExtension,
     TableCellExtension,
 
-    SocialsExtension,
     SocialExtension,
   ].filter((ext) => {
     return !extensions.some((e) => e.name === ext.name);

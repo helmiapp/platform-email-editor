@@ -1,106 +1,127 @@
 import { mergeAttributes, Node } from '@tiptap/core';
 import { ReactNodeViewRenderer } from '@tiptap/react';
-import { SocialComponent } from './social-component';
-import { SocialsComponent } from './socials-component';
+import { SocialView } from '../../nodes/social/social-view';
+
+export interface Social {
+  type: string;
+  url: string;
+  icon?: string;
+  useMonochrome?: boolean;
+  size?: number;
+}
+
+export interface SocialsOptions {
+  HTMLAttributes: Record<string, any>;
+}
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     socials: {
-      insertSocials: (attrs: { showIfKey: string }) => ReturnType;
-      addSocial: (platform: SocialPlatform) => ReturnType;
-      removeSocial: (id: string) => ReturnType;
-      updateSocial: (id: string, attrs: Partial<SocialPlatform>) => ReturnType;
+      setSocials: (socials: Social[]) => ReturnType;
+      addSocial: (social: {
+        type: string;
+        url: string;
+        icon?: string;
+      }) => ReturnType;
+      removeSocial: (index: number) => ReturnType;
     };
   }
 }
 
-export interface SocialPlatform {
-  id: string;
-  name: string;
-  icon: string;
-  url: string;
-  isCustom?: boolean;
-}
-
-export const SocialsExtension = Node.create({
+export const SocialExtension = Node.create<SocialsOptions>({
   name: 'socials',
 
   group: 'block',
-  content: 'social*',
+
+  draggable: true,
+
+  content: '',
+
+  selectable: true,
 
   addAttributes() {
     return {
-      showIfKey: { default: null },
+      socials: {
+        default: [],
+      },
+      useMonochrome: {
+        default: false,
+      },
+      size: {
+        default: 20,
+      },
     };
   },
 
   parseHTML() {
-    return [{ tag: 'div[data-type="socials"]' }];
+    return [
+      {
+        tag: 'div[data-type="socials"]',
+      },
+    ];
   },
 
   renderHTML({ HTMLAttributes }) {
     return [
       'div',
-      mergeAttributes(HTMLAttributes, { 'data-type': 'socials' }),
+      mergeAttributes(
+        { 'data-type': 'socials', class: 'social-node' },
+        HTMLAttributes
+      ),
       0,
     ];
-  },
-
-  addNodeView() {
-    return ReactNodeViewRenderer(SocialsComponent);
   },
 
   addCommands() {
     return {
+      setSocials:
+        (socials: Social[]) =>
+        ({ commands }) => {
+          return commands.updateAttributes(this.name, { socials });
+        },
+
       addSocial:
-        (platform: SocialPlatform) =>
-        ({ chain }) => {
-          return chain()
-            .insertContent({
-              type: 'social',
-              attrs: {
-                platformId: platform.id,
-                name: platform.name,
-                icon: platform.icon,
-                url: platform.url,
-                isCustom: platform.isCustom,
-              },
-            })
-            .run();
+        (social: Social) =>
+        ({ commands, editor }) => {
+          const currentSocials = editor.getAttributes(this.name).socials || [];
+          return commands.updateAttributes(this.name, {
+            socials: [...currentSocials, social],
+          });
+        },
+
+      removeSocial:
+        (index: number) =>
+        ({ commands, editor }) => {
+          const currentSocials = [
+            ...(editor.getAttributes(this.name).socials || []),
+          ];
+          currentSocials.splice(index, 1);
+          return commands.updateAttributes(this.name, {
+            socials: currentSocials,
+          });
         },
     };
   },
-});
-
-export const SocialExtension = Node.create({
-  name: 'social',
-
-  group: 'block',
-  content: 'inline*',
-
-  addAttributes() {
-    return {
-      platformId: { default: '' },
-      name: { default: '' },
-      icon: { default: '' },
-      url: { default: '' },
-      isCustom: { default: false },
-    };
-  },
-
-  parseHTML() {
-    return [{ tag: 'div[data-type="social"]' }];
-  },
-
-  renderHTML({ HTMLAttributes }) {
-    return [
-      'div',
-      mergeAttributes(HTMLAttributes, { 'data-type': 'social' }),
-      0,
-    ];
-  },
 
   addNodeView() {
-    return ReactNodeViewRenderer(SocialComponent);
+    return ReactNodeViewRenderer(SocialView, {
+      as: 'div',
+      className: 'social-node-view',
+    });
+  },
+
+  addKeyboardShortcuts() {
+    return {
+      Backspace: () => {
+        const { empty, $anchor } = this.editor.state.selection;
+        const isAtStart = $anchor.pos === 1;
+
+        if (!empty || !isAtStart) {
+          return false;
+        }
+
+        return this.editor.commands.deleteNode(this.name);
+      },
+    };
   },
 });

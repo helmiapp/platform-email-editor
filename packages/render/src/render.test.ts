@@ -309,4 +309,92 @@ describe('render', () => {
     expect(result).toContain('line-height:20px');
     expect(result).toContain('color:#374151'); // Theme color
   });
+
+  it('should render social icons with links', async () => {
+    const content = {
+      type: 'doc',
+      content: [
+        {
+          type: 'socials',
+          attrs: {
+            socials: [
+              {
+                type: 'facebook',
+                url: 'https://facebook.com/example',
+                icon: 'https://cdn-icons-png.flaticon.com/512/5968/5968764.png',
+                size: 20,
+              },
+              {
+                type: 'twitter',
+                url: 'https://twitter.com/example',
+                icon: 'https://cdn-icons-png.flaticon.com/512/5968/5968830.png',
+                size: 20,
+              },
+              {
+                type: 'custom',
+                url: 'https://example.com',
+                icon: 'https://example.com/favicon.ico',
+                size: 20,
+              },
+            ],
+            size: 20,
+          },
+        },
+      ],
+    };
+
+    const maily = new Maily(content);
+    const result = await maily.render();
+
+    // Check structure
+    expect(result).toContain('<table');
+    expect(result).toContain('<tr');
+    expect(result).toContain('<td');
+    expect(result).toContain('text-align:center');
+
+    // Check social links
+    expect(result).toContain('href="https://facebook.com/example"');
+    expect(result).toContain('href="https://twitter.com/example"');
+    expect(result).toContain('href="https://example.com"');
+
+    // Check icons
+    expect(result).toContain(
+      'src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png"'
+    );
+    expect(result).toContain(
+      'src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png"'
+    );
+    expect(result).toContain('src="https://example.com/favicon.ico"');
+
+    // Check styling
+    expect(result).toContain('border-radius:50%');
+    expect(result).toContain('border:1px solid #e2e8f0');
+    expect(result).toContain('width="40"'); // size * 2
+    expect(result).toContain('height="40"'); // size * 2
+    expect(result).toContain('display:inline-block');
+    expect(result).toContain('margin:0 5px');
+  });
+
+  it('should handle empty socials array', async () => {
+    const content = {
+      type: 'doc',
+      content: [
+        {
+          type: 'socials',
+          attrs: {
+            socials: [],
+            size: 20,
+          },
+        },
+      ],
+    };
+
+    const maily = new Maily(content);
+    const result = await maily.render();
+
+    // Should not render any social section
+    expect(result).not.toContain('<a');
+    expect(result).not.toContain('<img');
+    expect(result).not.toContain('text-align:center');
+  });
 });

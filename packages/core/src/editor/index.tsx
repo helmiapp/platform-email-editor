@@ -16,6 +16,7 @@ import { ImageBubbleMenu } from './components/image-menu/image-bubble-menu';
 import { InlineImageBubbleMenu } from './components/inline-image-menu/inline-image-bubble-menu';
 import { RepeatBubbleMenu } from './components/repeat-menu/repeat-bubble-menu';
 import { SectionBubbleMenu } from './components/section-menu/section-bubble-menu';
+
 import { SocialBubbleMenu } from './components/social-menu/social-bubble-menu';
 import { SpacerBubbleMenu } from './components/spacer-menu/spacer-bubble-menu';
 import { TableBubbleMenu } from './components/table-menu/table-bubble-menu';

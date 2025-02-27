@@ -13,7 +13,18 @@ export const social: BlockItem = {
       .deleteRange(range)
       .insertContent({
         type: 'socials',
-        attrs: { showIfKey: null },
+        attrs: {
+          socials: [],
+        },
+      })
+      .insertContentAt(0, {
+        type: 'paragraph',
+        content: [
+          {
+            type: 'text',
+            text: '',
+          },
+        ],
       })
       .run();
   },

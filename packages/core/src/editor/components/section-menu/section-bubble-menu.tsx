@@ -1,5 +1,7 @@
+import { getClosestNodeByName } from '@/editor/utils/columns';
 import { deleteNode } from '@/editor/utils/delete-node';
 import { isTextSelected } from '@/editor/utils/is-text-selected';
+import { spacing } from '@/editor/utils/spacing';
 import { BubbleMenu, findChildren } from '@tiptap/react';
 import { ChevronUp, Trash } from 'lucide-react';
 import { useCallback } from 'react';
@@ -13,15 +15,12 @@ import { BorderColor } from '../icons/border-color';
 import { MarginIcon } from '../icons/margin-icon';
 import { PaddingIcon } from '../icons/padding-icon';
 import { Popover, PopoverContent, PopoverTrigger } from '../popover';
-import { ShowPopover } from '../show-popover';
 import { EditorBubbleMenuProps } from '../text-menu/text-bubble-menu';
 import { ColorPicker } from '../ui/color-picker';
 import { Divider } from '../ui/divider';
 import { Select } from '../ui/select';
 import { TooltipProvider } from '../ui/tooltip';
 import { useSectionState } from './use-section-state';
-import { getClosestNodeByName } from '@/editor/utils/columns';
-import { spacing } from '@/editor/utils/spacing';
 
 export function SectionBubbleMenu(props: EditorBubbleMenuProps) {
   const { appendTo, editor } = props;
@@ -239,7 +238,7 @@ export function SectionBubbleMenu(props: EditorBubbleMenuProps) {
 
         <Divider />
 
-        <ShowPopover
+        {/* <ShowPopover
           showIfKey={state.currentShowIfKey}
           onShowIfKeyValueChange={(value) => {
             editor.commands.updateSection({
@@ -247,7 +246,7 @@ export function SectionBubbleMenu(props: EditorBubbleMenuProps) {
             });
           }}
           editor={editor}
-        />
+        /> */}
 
         {state.isColumnsActive && (
           <>

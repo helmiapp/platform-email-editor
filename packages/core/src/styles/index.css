@@ -580,3 +580,20 @@
   cursor: ew-resize;
   cursor: col-resize;
 }
+
+/* bullet and number color */
+.mly-prose :where(ul > li):not(:where([class~='mly-not-prose'], [class~='mly-not-prose'] *))::marker,
+.mly-prose :where(ol > li):not(:where([class~='mly-not-prose'], [class~='mly-not-prose'] *))::marker {
+	color: var(--foreground) !important;
+}
+/* fix button overflow on x axis */
+#slash-command {
+	display: flex;
+	flex-direction: column;
+	overflow-x: hidden;
+}
+
+#slash-command button {
+	width: auto !important;
+	flex-grow: 1 !important;
+}

@@ -10,19 +10,20 @@ import { Divider } from '@/editor/components/ui/divider';
 import { LinkInputPopover } from '@/editor/components/ui/link-input-popover';
 import { Select } from '@/editor/components/ui/select';
 import { TooltipProvider } from '@/editor/components/ui/tooltip';
+import {
+  DEFAULT_RENDER_VARIABLE_FUNCTION,
+  useMailyContext,
+} from '@/editor/provider';
 import { cn } from '@/editor/utils/classname';
 import { NodeViewProps, NodeViewWrapper } from '@tiptap/react';
+import { CSSProperties, useMemo } from 'react';
 import {
   allowedButtonBorderRadius,
   AllowedButtonVariant,
   allowedButtonVariant,
   ButtonAttributes,
 } from './button';
-import { ShowPopover } from '@/editor/components/show-popover';
 import { ButtonLabelInput } from './button-label-input';
-import { DEFAULT_RENDER_VARIABLE_FUNCTION } from '@/editor/provider';
-import { useMailyContext } from '@/editor/provider';
-import { CSSProperties, useMemo } from 'react';
 
 export function ButtonView(props: NodeViewProps) {
   const { node, editor, getPos, updateAttributes } = props;
@@ -264,7 +265,7 @@ export function ButtonView(props: NodeViewProps) {
 
               <Divider />
 
-              <ShowPopover
+              {/* <ShowPopover
                 showIfKey={showIfKey}
                 onShowIfKeyValueChange={(value) => {
                   updateAttributes({
@@ -272,7 +273,7 @@ export function ButtonView(props: NodeViewProps) {
                   });
                 }}
                 editor={editor}
-              />
+              /> */}
             </div>
           </TooltipProvider>
         </PopoverContent>

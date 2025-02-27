@@ -1,16 +1,15 @@
 import { BubbleMenu } from '@tiptap/react';
 
+import { spacing } from '@/editor/utils/spacing';
+import { useMemo } from 'react';
 import { BubbleMenuButton } from '../bubble-menu-button';
 import {
   BubbleMenuItem,
   EditorBubbleMenuProps,
 } from '../text-menu/text-bubble-menu';
 import { Divider } from '../ui/divider';
-import { useSpacerState } from './use-spacer-state';
-import { ShowPopover } from '../show-popover';
 import { TooltipProvider } from '../ui/tooltip';
-import { spacing } from '@/editor/utils/spacing';
-import { useMemo } from 'react';
+import { useSpacerState } from './use-spacer-state';
 
 export function SpacerBubbleMenu(props: EditorBubbleMenuProps) {
   const { editor, appendTo } = props;
@@ -67,13 +66,13 @@ export function SpacerBubbleMenu(props: EditorBubbleMenuProps) {
           />
         ))}
         <Divider />
-        <ShowPopover
+        {/* <ShowPopover
           showIfKey={state.currentShowIfKey}
           onShowIfKeyValueChange={(value) => {
             editor.commands.setSpacerShowIfKey(value);
           }}
           editor={editor}
-        />
+        /> */}
       </TooltipProvider>
     </BubbleMenu>
   );

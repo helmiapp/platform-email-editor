@@ -30,7 +30,7 @@ import { SocialExtension } from './social';
 
 export type MailyKitOptions = {
   linkCard?: Partial<LinkCardOptions> | false;
-  repeat?: Partial<{}> | false;
+  // repeat?: Partial<{}> | false;
   section?: Partial<{}> | false;
   columns?: Partial<{}> | false;
   column?: Partial<{}> | false;

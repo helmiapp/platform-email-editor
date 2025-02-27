@@ -4,7 +4,6 @@ import { CodeXmlIcon, ViewIcon } from 'lucide-react';
 import { useCallback } from 'react';
 import { sticky } from 'tippy.js';
 import { getRenderContainer } from '../../utils/get-render-container';
-import { ShowPopover } from '../show-popover';
 import { EditorBubbleMenuProps } from '../text-menu/text-bubble-menu';
 import { Divider } from '../ui/divider';
 import {
@@ -101,7 +100,7 @@ export function HTMLBubbleMenu(props: EditorBubbleMenuProps) {
           </Tooltip>
         </div>
         <Divider />
-        <ShowPopover
+        {/* <ShowPopover
           showIfKey={state.currentShowIfKey}
           onShowIfKeyValueChange={(value) => {
             editor.commands.updateHtmlCodeBlock({
@@ -109,7 +108,7 @@ export function HTMLBubbleMenu(props: EditorBubbleMenuProps) {
             });
           }}
           editor={editor}
-        />
+        /> */}
       </TooltipProvider>
     </BubbleMenu>
   );

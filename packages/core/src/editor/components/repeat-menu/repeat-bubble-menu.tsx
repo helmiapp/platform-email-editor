@@ -3,13 +3,14 @@ import {
   useMailyContext,
 } from '@/editor/provider';
 import { cn } from '@/editor/utils/classname';
+import { getClosestNodeByName } from '@/editor/utils/columns';
 import { isTextSelected } from '@/editor/utils/is-text-selected';
+import { processVariables } from '@/editor/utils/variable';
 import { BubbleMenu, findChildren } from '@tiptap/react';
 import { InfoIcon } from 'lucide-react';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { sticky } from 'tippy.js';
 import { getRenderContainer } from '../../utils/get-render-container';
-import { ShowPopover } from '../show-popover';
 import { EditorBubbleMenuProps } from '../text-menu/text-bubble-menu';
 import { Divider } from '../ui/divider';
 import { InputAutocomplete } from '../ui/input-autocomplete';
@@ -20,8 +21,6 @@ import {
   TooltipTrigger,
 } from '../ui/tooltip';
 import { useRepeatState } from './use-repeat-state';
-import { getClosestNodeByName } from '@/editor/utils/columns';
-import { processVariables } from '@/editor/utils/variable';
 
 export function RepeatBubbleMenu(props: EditorBubbleMenuProps) {
   const { appendTo, editor } = props;
@@ -173,7 +172,7 @@ export function RepeatBubbleMenu(props: EditorBubbleMenuProps) {
         )}
 
         <Divider />
-        <ShowPopover
+        {/* <ShowPopover
           showIfKey={state.currentShowIfKey}
           onShowIfKeyValueChange={(value) => {
             editor.commands.updateRepeat({
@@ -181,7 +180,7 @@ export function RepeatBubbleMenu(props: EditorBubbleMenuProps) {
             });
           }}
           editor={editor}
-        />
+        /> */}
       </TooltipProvider>
     </BubbleMenu>
   );

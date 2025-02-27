@@ -11,8 +11,7 @@ import {
   headerLogoWithTextHorizontal,
   headerLogoWithTextVertical,
 } from '@/blocks/headers';
-import { image, inlineImage, logo } from '@/blocks/image';
-import { columns, divider, repeat, section, spacer } from '@/blocks/layout';
+import { columns, divider, section, spacer } from '@/blocks/layout';
 import { bulletList, orderedList } from '@/blocks/list';
 import { table } from '@/blocks/table';
 import { BlockGroupItem } from '@/blocks/types';
@@ -38,14 +37,14 @@ export const DEFAULT_SLASH_COMMANDS: BlockGroupItem[] = [
       heading3,
       bulletList,
       orderedList,
-      image,
-      logo,
-      inlineImage,
+      // image,
+      // logo,
+      // inlineImage,
       columns,
       section,
       table,
       social,
-      repeat,
+      // repeat,
       divider,
       spacer,
       button,

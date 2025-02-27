@@ -3,6 +3,7 @@ import { cn } from '@/editor/utils/classname';
 import { Editor } from '@tiptap/core';
 import { ReactRenderer } from '@tiptap/react';
 import { SuggestionOptions } from '@tiptap/suggestion';
+import { ChevronRightIcon } from 'lucide-react';
 import {
   forwardRef,
   Fragment,
@@ -16,7 +17,6 @@ import {
 } from 'react';
 import tippy, { GetReferenceClientRect } from 'tippy.js';
 import { DEFAULT_SLASH_COMMANDS } from './default-slash-commands';
-import { ChevronRightIcon } from 'lucide-react';
 
 type CommandListProps = {
   items: BlockGroupItem[];
@@ -149,7 +149,7 @@ const CommandList = forwardRef(function CommandList(
             >
               {group.title}
             </span>
-            <div className="mly-p-1">
+            <div className="mly-p-1 mly-flex mly-flex-col mly-gap-1">
               {group.commands.map((item, commandIndex) => {
                 const isActive =
                   groupIndex === selectedGroupIndex &&
@@ -191,7 +191,7 @@ const CommandList = forwardRef(function CommandList(
                 return (
                   <button
                     className={cn(
-                      'mly-flex mly-w-full mly-items-center mly-gap-2 mly-rounded-md mly-px-2 mly-py-1 mly-text-left mly-text-sm mly-text-gray-900 hover:mly-bg-gray-100 hover:mly-text-gray-900',
+                      'mly-flex !mly-grow mly-w-full mly-items-center mly-gap-2 mly-rounded-md mly-px-2 mly-py-1 mly-text-left mly-text-sm mly-text-gray-900 hover:mly-bg-gray-100 hover:mly-text-gray-900',
                       isActive
                         ? 'mly-bg-gray-100 mly-text-gray-900'
                         : 'mly-bg-transparent'

@@ -2,13 +2,6 @@
   "name": "@helmiapp/email-editor",
   "version": "0.0.1",
   "packageManager": "pnpm@9.15.4",
-  "publishConfig": {
-    "@helmiapp:registry": "https://npm.pkg.github.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/helmiapp/platform-email-editor.git"
-  },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",

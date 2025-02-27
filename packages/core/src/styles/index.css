@@ -275,7 +275,17 @@
   }
 
   :where(.is-editor-empty:first-child, .is-empty):not(
-      :where([data-type='columns'], [data-type='section'], ul, li, ol, )
+      :where(
+        [data-type='columns'],
+        [data-type='section'],
+        ul,
+        li,
+        ol,
+        table,
+        td,
+        tr,
+        th
+      )
     )::before {
     content: attr(data-placeholder);
     float: left;
@@ -527,6 +537,10 @@
   margin: 0 !important;
 }
 
+.tiptap table :where(td, th, tr) {
+  overflow: hidden;
+}
+
 .tiptap table th {
   background-color: var(--bg-color-secondary);
   height: fit-content;
@@ -536,6 +550,7 @@
 
 .tiptap table .selectedCell:after {
   background: var(--selected-color);
+  opacity: 0.75;
   content: '';
   left: 0;
   right: 0;

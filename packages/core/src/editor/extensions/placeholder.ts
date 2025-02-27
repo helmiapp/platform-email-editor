@@ -16,8 +16,8 @@ export const PlaceholderExtension = Placeholder.configure({
         'blockquote',
         'table',
         'tableRow',
-        'tableCell',
         'tableHeader',
+        'tableCell',
       ].includes(node.type.name)
     ) {
       return '';
@@ -25,5 +25,5 @@ export const PlaceholderExtension = Placeholder.configure({
 
     return 'Write something or / to see commands';
   },
-  includeChildren: false, // Was true, but it messes with the table tiptap extension, because each cell has p inside
+  includeChildren: true, // Was true, but it messes with the table tiptap extension, because each cell has p inside
 });

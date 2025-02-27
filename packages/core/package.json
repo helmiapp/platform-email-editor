@@ -1,6 +1,6 @@
 {
-  "name": "@email-editor/core",
-  "version": "0.1.0",
+  "name": "@helmiapp/platform-email-editor-core",
+  "version": "0.1.1",
   "description": "Powerful editor for creating beautiful, pre-designed, mobile-ready emails.",
   "private": false,
   "main": "./dist/index.js",
@@ -45,12 +45,14 @@
     "clean": "rm -rf dist",
     "build": "tsup"
   },
+  "publishConfig": {
+    "@helmiapp:registry": "https://npm.pkg.github.com"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arikchakma/maily.to.git",
+    "url": "git+https://github.com/helmiapp/Platform.git",
     "directory": "packages/core"
   },
-  "author": "Arik Chakma <arikchangma@gmail.com>",
   "keywords": [
     "tiptap",
     "wysiwyg",
@@ -114,8 +116,5 @@
   },
   "peerDependencies": {
     "react": "^18.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

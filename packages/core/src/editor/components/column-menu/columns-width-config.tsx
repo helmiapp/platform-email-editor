@@ -1,7 +1,7 @@
-import { Columns2, SlidersVertical, Columns3 } from 'lucide-react';
-import { Popover, PopoverContent, PopoverTrigger } from '../popover';
 import { cn } from '@/editor/utils/classname';
 import { AUTOCOMPLETE_PASSWORD_MANAGERS_OFF } from '@/editor/utils/constants';
+import { Columns2, Columns3, SlidersVertical } from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from '../popover';
 
 type ColumnsWidthConfigProps = {
   columnsCount: number;

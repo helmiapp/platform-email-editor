@@ -1,9 +1,9 @@
 import { BubbleMenu } from '@tiptap/react';
 import { sticky } from 'tippy.js';
 import { EditorBubbleMenuProps } from '../text-menu/text-bubble-menu';
-import { SocialBubbleMenuContent } from './social-bubble-menu-content';
+import { SocialsBubbleMenuContent } from './socials-bubble-menu-content';
 
-export function SocialBubbleMenu(props: EditorBubbleMenuProps) {
+export function SocialsBubbleMenu(props: EditorBubbleMenuProps) {
   const { appendTo, editor } = props;
   if (!editor) return null;
 
@@ -12,7 +12,7 @@ export function SocialBubbleMenu(props: EditorBubbleMenuProps) {
     ...(appendTo ? { appendTo: appendTo.current } : {}),
     shouldShow: ({ editor }) => {
       if (!editor.isEditable) return false;
-      return editor.isActive('social');
+      return editor.isActive('socials');
     },
     tippyOptions: {
       offset: [0, 8],
@@ -24,7 +24,7 @@ export function SocialBubbleMenu(props: EditorBubbleMenuProps) {
       sticky: 'popper',
       maxWidth: 'auto',
     },
-    pluginKey: 'socialBubbleMenu',
+    pluginKey: 'socialsBubbleMenu',
   };
 
   return (
@@ -32,7 +32,7 @@ export function SocialBubbleMenu(props: EditorBubbleMenuProps) {
       {...bubbleMenuProps}
       className="mly-rounded-lg mly-border mly-border-slate-200 mly-bg-white mly-p-0.5 mly-shadow-md"
     >
-      <SocialBubbleMenuContent editor={editor} />
+      <SocialsBubbleMenuContent editor={editor} />
     </BubbleMenu>
   );
 }

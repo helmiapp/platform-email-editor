@@ -1,24 +1,17 @@
 import {
-  BracesIcon,
-  ChevronDownIcon,
-  CornerDownLeft,
-  Link,
-  LucideIcon,
-} from 'lucide-react';
-import { Popover, PopoverContent, PopoverTrigger } from '../popover';
-import { BaseButton } from '../base-button';
-import { useRef, useState } from 'react';
-import { Tooltip, TooltipTrigger, TooltipContent } from './tooltip';
-import {
   DEFAULT_PLACEHOLDER_URL,
   DEFAULT_RENDER_VARIABLE_FUNCTION,
   DEFAULT_VARIABLE_TRIGGER_CHAR,
   useMailyContext,
 } from '@/editor/provider';
-import { InputAutocomplete } from './input-autocomplete';
 import { processVariables } from '@/editor/utils/variable';
-import { useMemo } from 'react';
 import { Editor } from '@tiptap/core';
+import { ChevronDownIcon, Link, LucideIcon } from 'lucide-react';
+import { useMemo, useRef, useState } from 'react';
+import { BaseButton } from '../base-button';
+import { Popover, PopoverContent, PopoverTrigger } from '../popover';
+import { InputAutocomplete } from './input-autocomplete';
+import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip';
 
 const LINK_PROTOCOL_REGEX = /https?:\/\//;
 
@@ -82,7 +75,6 @@ export function LinkInputPopover(props: LinkInputPopoverProps) {
         variant="ghost"
         size="sm"
         type="button"
-        className="mly-size-7"
         data-state={!!defaultUrlWithoutProtocol}
       >
         <Icon className="mly-h-3 mly-w-3 mly-shrink-0 mly-stroke-[2.5] mly-text-midnight-gray" />

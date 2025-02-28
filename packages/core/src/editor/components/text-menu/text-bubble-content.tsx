@@ -7,17 +7,16 @@ import {
   ItalicIcon,
   List,
   ListOrdered,
-  LucideIcon,
   StrikethroughIcon,
   UnderlineIcon,
 } from 'lucide-react';
-import { BubbleMenuButton } from '../bubble-menu-button';
 import { AlignmentSwitch } from '../alignment-switch';
-import { useTextMenuState } from './use-text-menu-state';
-import { LinkInputPopover } from '../ui/link-input-popover';
-import { Divider } from '../ui/divider';
-import { ColorPicker } from '../ui/color-picker';
 import { BaseButton } from '../base-button';
+import { BubbleMenuButton } from '../bubble-menu-button';
+import { ColorPicker } from '../ui/color-picker';
+import { Divider } from '../ui/divider';
+import { LinkInputPopover } from '../ui/link-input-popover';
+import { useTextMenuState } from './use-text-menu-state';
 
 type TextBubbleContentProps = {
   editor: Editor;
@@ -144,7 +143,7 @@ export function TextBubbleContent(props: TextBubbleContentProps) {
           variant="ghost"
           size="sm"
           type="button"
-          className="!mly-h-7 mly-w-7 mly-shrink-0 mly-p-0"
+          className="mly-shrink-0"
         >
           <div className="mly-flex mly-flex-col mly-items-center mly-justify-center mly-gap-[1px]">
             <span className="mly-font-bolder mly-font-mono mly-text-xs mly-text-slate-700">

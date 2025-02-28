@@ -1,14 +1,14 @@
+import { cn } from '@/editor/utils/classname';
 import { ChevronDownIcon, PilcrowIcon } from 'lucide-react';
+import { useMemo } from 'react';
+import { BaseButton } from '../base-button';
 import { Popover, PopoverContent, PopoverTrigger } from '../popover';
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 import {
   TurnIntoBlockCategory,
   TurnIntoBlockOptions,
   TurnIntoOptions,
 } from './use-turn-into-block-options';
-import { useMemo } from 'react';
-import { BaseButton } from '../base-button';
-import { cn } from '@/editor/utils/classname';
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
 type TurnIntoBlockProps = {
   options: TurnIntoOptions;
@@ -35,13 +35,15 @@ export function TurnIntoBlock(props: TurnIntoBlockProps) {
     <Popover>
       <Tooltip>
         <TooltipTrigger asChild>
-          <PopoverTrigger
-            className={cn(
-              'mly-flex mly-aspect-square mly-h-7 mly-items-center mly-justify-center mly-gap-1 mly-rounded-md mly-px-1.5 mly-text-sm data-[state=open]:mly-bg-soft-gray hover:mly-bg-soft-gray focus-visible:mly-relative focus-visible:mly-z-10 focus-visible:mly-outline-none focus-visible:mly-ring-2 focus-visible:mly-ring-gray-400 focus-visible:mly-ring-offset-2'
-            )}
-          >
-            <ActiveIcon className="mly-h-3 mly-w-3 mly-shrink-0 mly-stroke-[2.5]" />
-            <ChevronDownIcon className="mly-h-3 mly-w-3 mly-shrink-0 mly-stroke-[2.5]" />
+          <PopoverTrigger asChild>
+            <BaseButton
+              variant="ghost"
+              size="sm"
+              className="mly-flex mly-items-center mly-gap-1"
+            >
+              <ActiveIcon className="mly-h-3 mly-w-3 mly-shrink-0 mly-stroke-[2.5]" />
+              <ChevronDownIcon className="mly-h-3 mly-w-3 mly-shrink-0 mly-stroke-[2.5]" />
+            </BaseButton>
           </PopoverTrigger>
         </TooltipTrigger>
         <TooltipContent sideOffset={8}>Turn into</TooltipContent>

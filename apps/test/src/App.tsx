@@ -12,7 +12,7 @@ function App() {
             ImageExtension.configure({
               uploadImage: async (file: File) => {
                 console.log(file);
-                return 'https://placeholder.com/image.jpg';
+                return 'https://media.istockphoto.com/id/814423752/photo/eye-of-model-with-colorful-art-make-up-close-up.jpg?s=612x612&w=0&k=20&c=l15OdMWjgCKycMMShP8UK94ELVlEGvt7GmB_esHWPYE=';
               },
             }),
           ]}

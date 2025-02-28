@@ -523,6 +523,11 @@
   width: 100%;
 }
 
+.tiptap .tableWrapper {
+  overflow-x: auto;
+  position: relative;
+}
+
 .tiptap table:not([data-type='section']) td,
 .tiptap table:not([data-type='section']) th {
   border: 1px solid var(--border-color);

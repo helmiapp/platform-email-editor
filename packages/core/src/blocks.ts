@@ -6,4 +6,3 @@ export * from './blocks/social';
 export * from './blocks/table';
 export * from './blocks/types';
 export * from './blocks/typography';
-export * from './blocks/upload-image';

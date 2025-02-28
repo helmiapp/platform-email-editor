@@ -23,16 +23,17 @@ export function SocialView(props: NodeViewProps) {
 
   return (
     <NodeViewWrapper
+      as="div"
       data-type="socials"
       draggable={editor.isEditable}
       data-drag-handle={editor.isEditable}
-      onClick={(e) => {
+      onClick={() => {
         if (!selected) {
           editor.commands.setNodeSelection(props.getPos());
         }
       }}
       className={cn(
-        'mly-relative mly-my-4 mly-flex mly-items-center mly-justify-center mly-rounded-lg mly-border-2 mly-border-dashed mly-border-gray-200 mly-bg-transparent mly-p-4 hover:mly-border-gray-300',
+        'mly-relative mly-my-4 mly-flex mly-items-center mly-justify-center mly-overflow-hidden mly-rounded-lg mly-border-2 mly-border-dashed mly-border-gray-200 mly-bg-transparent mly-p-4 hover:mly-border-gray-300',
         selected && 'mly-border-primary mly-ring-primary mly-ring-1',
         'social-node'
       )}

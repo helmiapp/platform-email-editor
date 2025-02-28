@@ -105,8 +105,7 @@ export const SocialExtension = Node.create<SocialsOptions>({
 
   addNodeView() {
     return ReactNodeViewRenderer(SocialView, {
-      as: 'div',
-      className: 'social-node-view',
+      className: 'mly-relative',
     });
   },
 

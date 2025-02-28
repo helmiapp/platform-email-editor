@@ -227,7 +227,7 @@
 .mly-editable .ProseMirror-selectednode::after {
   content: '';
   position: absolute;
-  inset: -2px;
+  inset: 0;
   pointer-events: none;
   border-radius: 6px;
   background: rgba(35, 131, 226, 0.14);
@@ -582,18 +582,24 @@
 }
 
 /* bullet and number color */
-.mly-prose :where(ul > li):not(:where([class~='mly-not-prose'], [class~='mly-not-prose'] *))::marker,
-.mly-prose :where(ol > li):not(:where([class~='mly-not-prose'], [class~='mly-not-prose'] *))::marker {
-	color: var(--foreground) !important;
+.mly-prose
+  :where(ul > li):not(
+    :where([class~='mly-not-prose'], [class~='mly-not-prose'] *)
+  )::marker,
+.mly-prose
+  :where(ol > li):not(
+    :where([class~='mly-not-prose'], [class~='mly-not-prose'] *)
+  )::marker {
+  color: var(--foreground) !important;
 }
 /* fix button overflow on x axis */
 #slash-command {
-	display: flex;
-	flex-direction: column;
-	overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 
 #slash-command button {
-	width: auto !important;
-	flex-grow: 1 !important;
+  width: auto !important;
+  flex-grow: 1 !important;
 }

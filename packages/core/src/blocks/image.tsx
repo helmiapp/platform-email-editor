@@ -1,6 +1,6 @@
-import { NodeSelection, Selection, TextSelection } from '@tiptap/pm/state';
-import type { BlockItem } from './types';
+import { TextSelection } from '@tiptap/pm/state';
 import { ImageIcon } from 'lucide-react';
+import type { BlockItem } from './types';
 
 export const image: BlockItem = {
   title: 'Image',
@@ -8,8 +8,12 @@ export const image: BlockItem = {
   searchTerms: ['image'],
   icon: <ImageIcon className="mly-h-4 mly-w-4" />,
   command: ({ editor, range }) => {
-    // @ts-ignore
+    // Insert empty image first
     editor.chain().focus().deleteRange(range).setImage({ src: '' }).run();
+
+    // The bubble menu will automatically appear, allowing the user to:
+    // 1. Upload an image via the upload button
+    // 2. Add an external URL via the link input
   },
 };
 

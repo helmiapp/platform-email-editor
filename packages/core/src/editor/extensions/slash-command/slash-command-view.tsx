@@ -149,7 +149,7 @@ const CommandList = forwardRef(function CommandList(
             >
               {group.title}
             </span>
-            <div className="mly-p-1 mly-flex mly-flex-col mly-gap-1">
+            <div className="mly-flex mly-flex-col mly-gap-1 mly-p-1">
               {group.commands.map((item, commandIndex) => {
                 const isActive =
                   groupIndex === selectedGroupIndex &&
@@ -191,7 +191,7 @@ const CommandList = forwardRef(function CommandList(
                 return (
                   <button
                     className={cn(
-                      'mly-flex !mly-grow mly-w-full mly-items-center mly-gap-2 mly-rounded-md mly-px-2 mly-py-1 mly-text-left mly-text-sm mly-text-gray-900 hover:mly-bg-gray-100 hover:mly-text-gray-900',
+                      'mly-flex mly-w-full !mly-grow mly-items-center mly-gap-2 mly-rounded-md mly-px-2 mly-py-1 mly-text-left mly-text-sm mly-text-gray-900 hover:mly-bg-gray-100 hover:mly-text-gray-900',
                       isActive
                         ? 'mly-bg-gray-100 mly-text-gray-900'
                         : 'mly-bg-transparent'
@@ -249,7 +249,7 @@ export function getSlashCommandSuggestions(
             group.commands
               .filter((item) => 'commands' in item)
               // @ts-ignore
-              .map((item) => item?.id.toLowerCase())
+              .map((item) => item?.id?.toLowerCase())
           );
         })
         .flat()

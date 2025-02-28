@@ -1,4 +1,6 @@
-import { Editor } from '../../../packages/core/dist/index.mjs';
+import { Editor } from '@helmiapp/platform-email-editor-core';
+
+import { ImageExtension } from '@helmiapp/platform-email-editor-core/extensions';
 
 function App() {
   return (
@@ -6,6 +8,14 @@ function App() {
       <div className="bg-background text-foreground h-full w-full max-w-full rounded-lg border border-red-500 p-10">
         <Editor
           onUpdate={(e) => console.log(e.getJSON())}
+          extensions={[
+            ImageExtension.configure({
+              uploadImage: async (file: File) => {
+                console.log(file);
+                return 'https://placeholder.com/image.jpg';
+              },
+            }),
+          ]}
           config={{
             hasMenuBar: false,
             contentClassName:

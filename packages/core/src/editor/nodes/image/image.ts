@@ -1,9 +1,18 @@
-import TiptapImage from '@tiptap/extension-image';
+import { Image } from '@tiptap/extension-image';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 import { DEFAULT_SECTION_SHOW_IF_KEY } from '../section/section';
 import { ImageView } from './image-view';
 
-export const ImageExtension = TiptapImage.extend({
+export interface ImageOptions {
+  uploadImage?: (file: File) => Promise<string>;
+}
+
+export const ImageExtension = Image.extend<ImageOptions>({
+  addStorage() {
+    return {
+      uploadImage: this.options.uploadImage,
+    };
+  },
   addAttributes() {
     return {
       ...this.parent?.(),
@@ -110,5 +119,11 @@ export const ImageExtension = TiptapImage.extend({
     return ReactNodeViewRenderer(ImageView, {
       className: 'mly-relative',
     });
+  },
+  addOptions() {
+    return {
+      ...this.parent?.(),
+      uploadImage: undefined,
+    };
   },
 });

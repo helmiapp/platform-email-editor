@@ -34,7 +34,7 @@ export const TableExtension = Table.extend({
 }).configure({
   resizable: true,
   allowTableNodeSelection: true,
-  lastColumnResizable: true,
+  lastColumnResizable: false,
 });
 
 export const TableRowExtension = TableRow.configure({

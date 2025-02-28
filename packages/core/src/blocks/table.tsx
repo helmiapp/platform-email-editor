@@ -14,7 +14,7 @@ export const table: BlockItem = {
       .insertTable({
         rows: 3,
         cols: 3,
-        withHeaderRow: true, // Enable header row by default
+        withHeaderRow: true, // Enable header row by defaults
       })
       .run();
   },

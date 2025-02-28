@@ -1,11 +1,11 @@
-import { useId } from 'react';
-import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip';
 import { cn } from '@/editor/utils/classname';
 import { ChevronDownIcon, LucideIcon } from 'lucide-react';
+import { useId } from 'react';
 import { SVGIcon } from '../icons/grid-lines';
+import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip';
 
 type SelectProps = {
-  label: string;
+  label?: string;
   options: {
     value: string;
     label: string;
@@ -36,10 +36,12 @@ export function Select(props: SelectProps) {
   const selectId = `mly${useId()}`;
 
   const content = (
-    <div className="relative">
-      <label htmlFor={selectId} className="sr-only">
-        {label}
-      </label>
+    <div className="mly-relative">
+      {label && (
+        <label htmlFor={selectId} className="mly-sr-only">
+          {label}
+        </label>
+      )}
 
       {Icon && (
         <div className="mly-pointer-events-none mly-absolute mly-inset-y-0 mly-left-2 mly-z-20 mly-flex mly-items-center">
@@ -50,7 +52,7 @@ export function Select(props: SelectProps) {
       <select
         id={selectId}
         className={cn(
-          'mly-flex mly-min-h-7 mly-max-w-max mly-appearance-none mly-items-center mly-rounded-md mly-px-1.5 mly-py-0.5 mly-pr-7 mly-text-sm mly-text-midnight-gray mly-ring-offset-white mly-transition-colors hover:mly-bg-soft-gray focus-visible:mly-relative focus-visible:mly-z-10 focus-visible:mly-outline-none focus-visible:mly-ring-2 focus-visible:mly-ring-gray-400 focus-visible:mly-ring-offset-2 active:mly-bg-soft-gray',
+          'mly-flex mly-h-full mly-max-h-9 mly-min-h-7 mly-max-w-max mly-grow mly-appearance-none mly-items-center mly-rounded-md mly-px-1.5 mly-py-0.5 mly-pr-7 mly-text-sm mly-text-midnight-gray mly-ring-offset-white mly-transition-colors hover:mly-bg-soft-gray focus-visible:mly-relative focus-visible:mly-z-10 focus-visible:mly-outline-none focus-visible:mly-ring-2 focus-visible:mly-ring-gray-400 focus-visible:mly-ring-offset-2 active:mly-bg-soft-gray',
           !!Icon && 'mly-pl-7',
           className
         )}

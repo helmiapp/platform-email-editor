@@ -523,8 +523,8 @@
   width: 100%;
 }
 
-.tiptap table td,
-.tiptap table th {
+.tiptap table:not([data-type='section']) td,
+.tiptap table:not([data-type='section']) th {
   border: 1px solid var(--border-color);
   box-sizing: border-box;
   min-width: 1em;

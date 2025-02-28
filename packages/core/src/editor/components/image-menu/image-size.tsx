@@ -1,29 +1,37 @@
-import { AUTOCOMPLETE_PASSWORD_MANAGERS_OFF } from '@/editor/utils/constants';
+import { Label } from '@radix-ui/react-dropdown-menu';
+import { Input } from '../input';
 
-type ImageSizeProps = {
-  value: string;
-  onValueChange: (value: string) => void;
+interface ImageSizeProps {
   dimension: 'width' | 'height';
-};
+  value: number | string;
+  onValueChange: (value: number | string) => void;
+}
 
-export function ImageSize(props: ImageSizeProps) {
-  const { value, onValueChange, dimension } = props;
+export function ImageSize({ dimension, value, onValueChange }: ImageSizeProps) {
+  const label = dimension === 'width' ? 'W' : 'H';
+  const displayValue = value === '100%' ? 'MAX' : value;
 
   return (
-    <label className="mly-relative mly-flex mly-items-center">
-      <span className="mly-absolute mly-inset-y-0 mly-left-2 mly-flex mly-items-center mly-text-xs mly-leading-none mly-text-gray-400">
-        {dimension === 'width' ? 'W' : 'H'}
-      </span>
-      <input
-        {...AUTOCOMPLETE_PASSWORD_MANAGERS_OFF}
-        className="hide-number-controls mly-h-auto mly-max-w-20 mly-appearance-none mly-border-0 mly-border-none mly-p-1 mly-px-[26px] mly-text-sm mly-uppercase mly-tabular-nums mly-outline-none focus-visible:mly-outline-none"
-        type="number"
-        value={value}
-        onChange={(e) => onValueChange(e.target.value)}
+    <div className="mly-flex mly-items-center mly-gap-1.5">
+      <Label className="mly-text-xs mly-font-medium mly-text-midnight-gray">
+        {label}
+      </Label>
+      <Input
+        type="text"
+        value={displayValue}
+        onChange={(e) => {
+          const val = e.target.value;
+          if (val === 'MAX') {
+            onValueChange('100%');
+          } else {
+            const num = parseInt(val);
+            if (!isNaN(num)) {
+              onValueChange(num);
+            }
+          }
+        }}
+        className="mly-h-7 mly-w-[60px] mly-text-xs"
       />
-      <span className="mly-absolute mly-inset-y-0 mly-right-1 mly-flex mly-items-center mly-text-xs mly-leading-none mly-text-gray-400">
-        PX
-      </span>
-    </label>
+    </div>
   );
 }

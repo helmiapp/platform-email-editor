@@ -143,7 +143,7 @@ export function ButtonView(props: NodeViewProps) {
           onCloseAutoFocus={(e) => e.preventDefault()}
         >
           <TooltipProvider>
-            <div className="mly-flex mly-items-stretch mly-text-midnight-gray">
+            <div className="mly-flex mly-items-stretch mly-gap-0.5 mly-text-midnight-gray">
               <ButtonLabelInput
                 value={text}
                 onValueChange={(value, isVariable) => {
@@ -301,10 +301,10 @@ function BackgroundColorPickerPopup(props: ColorPickerProps) {
         variant="ghost"
         size="sm"
         type="button"
-        className="mly-size-7"
+        // className="mly-size-7"
       >
         <div
-          className="mly-h-4 mly-w-4 mly-shrink-0 mly-rounded-full mly-shadow"
+          className="mly-h-3 mly-w-3 mly-shrink-0 mly-rounded-full mly-shadow"
           style={{
             backgroundColor: variant === 'filled' ? color : 'transparent',
             borderStyle: 'solid',
@@ -326,7 +326,7 @@ function TextColorPickerPopup(props: ColorPickerProps) {
         variant="ghost"
         size="sm"
         type="button"
-        className="mly-size-7"
+        // className="mly-size-7"
       >
         <div className="mly-flex mly-flex-col mly-items-center mly-justify-center mly-gap-[1px]">
           <span className="mly-font-bolder mly-font-mono mly-text-xs mly-text-midnight-gray">

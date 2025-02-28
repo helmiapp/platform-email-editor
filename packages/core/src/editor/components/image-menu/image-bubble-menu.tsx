@@ -1,6 +1,6 @@
 import { AllowedLogoSize, allowedLogoSize } from '@/editor/nodes/logo/logo';
 import { BubbleMenu } from '@tiptap/react';
-import { ImageDown, Loader2, Upload } from 'lucide-react';
+import { ImageDown, Loader2, Maximize2, Upload } from 'lucide-react';
 import { useState } from 'react';
 import { sticky } from 'tippy.js';
 import { AlignmentSwitch } from '../alignment-switch';
@@ -109,7 +109,7 @@ export function ImageBubbleMenu(props: EditorBubbleMenuProps) {
           </>
         )}
 
-        <div className="mly-flex mly-items-center mly-gap-0.5">
+        <div className="mly-flex mly-items-center mly-gap-2">
           <AlignmentSwitch
             alignment={state.alignment}
             onAlignmentChange={(alignment) => {
@@ -160,7 +160,6 @@ export function ImageBubbleMenu(props: EditorBubbleMenuProps) {
                 size="sm"
                 onClick={handleFileSelect}
                 disabled={isUploading}
-                className="mly-size-7"
               >
                 {isUploading ? (
                   <Loader2 className="animate-spin mly-h-3 mly-w-3 mly-shrink-0 mly-stroke-[2.5] mly-text-midnight-gray" />
@@ -195,7 +194,7 @@ export function ImageBubbleMenu(props: EditorBubbleMenuProps) {
           <>
             <Divider />
 
-            <div className="mly-flex mly-space-x-0.5">
+            <div className="mly-flex mly-space-x-2">
               <ImageSize
                 dimension="width"
                 value={state?.width ?? 0}
@@ -216,11 +215,34 @@ export function ImageBubbleMenu(props: EditorBubbleMenuProps) {
                     .run();
                 }}
               />
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <BaseButton
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      editor
+                        ?.chain()
+                        .updateAttributes('image', {
+                          isMaxWidth: !state.isMaxWidth,
+                          width: state.isMaxWidth ? 'auto' : '100%',
+                          height: state.isMaxWidth ? 'auto' : '100%',
+                        })
+                        .run();
+                    }}
+                    className={`${state.isMaxWidth ? 'mly-bg-slate-100' : ''}`}
+                  >
+                    <Maximize2 className="mly-h-3 mly-w-3 mly-shrink-0 mly-stroke-[2.5] mly-text-midnight-gray" />
+                  </BaseButton>
+                </TooltipTrigger>
+                <TooltipContent>
+                  {state.isMaxWidth ? 'Reset Size' : 'Full Width'}
+                </TooltipContent>
+              </Tooltip>
             </div>
           </>
         )}
 
-        <Divider />
         {/* <ShowPopover
           showIfKey={state.currentShowIfKey}
           onShowIfKeyValueChange={(value) => {

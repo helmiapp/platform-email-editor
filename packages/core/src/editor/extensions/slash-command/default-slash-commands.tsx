@@ -1,13 +1,6 @@
-import { image, inlineImage, social } from '@/blocks';
+import { image, social } from '@/blocks';
 import { button, linkCard } from '@/blocks/button';
-import { htmlCodeBlock } from '@/blocks/code';
 import {
-  footerCommunityFeedbackCta,
-  footerCompanySignature,
-  footerCopyrightText,
-} from '@/blocks/footers';
-import {
-  headerLogoWithCoverImage,
   headerLogoWithTextHorizontal,
   headerLogoWithTextVertical,
 } from '@/blocks/headers';
@@ -25,7 +18,7 @@ import {
   heading3,
   text,
 } from '@/blocks/typography';
-import { FootprintsIcon, Heading1 } from 'lucide-react';
+import { Heading1 } from 'lucide-react';
 
 export const DEFAULT_SLASH_COMMANDS: BlockGroupItem[] = [
   {
@@ -39,7 +32,7 @@ export const DEFAULT_SLASH_COMMANDS: BlockGroupItem[] = [
       orderedList,
       image,
       // logo,
-      inlineImage,
+      // inlineImage,
       columns,
       section,
       table,
@@ -67,22 +60,22 @@ export const DEFAULT_SLASH_COMMANDS: BlockGroupItem[] = [
         commands: [
           headerLogoWithTextVertical,
           headerLogoWithTextHorizontal,
-          headerLogoWithCoverImage,
+          // headerLogoWithCoverImage,
         ],
       },
-      {
-        id: 'footers',
-        title: 'Footers',
-        description: 'Add pre-designed footers block',
-        searchTerms: ['footers'],
-        icon: <FootprintsIcon className="mly-h-4 mly-w-4" />,
-        commands: [
-          footerCopyrightText,
-          footerCommunityFeedbackCta,
-          footerCompanySignature,
-        ],
-      },
-      htmlCodeBlock,
+      // {
+      //   id: 'footers',
+      //   title: 'Footers',
+      //   description: 'Add pre-designed footers block',
+      //   searchTerms: ['footers'],
+      //   icon: <FootprintsIcon className="mly-h-4 mly-w-4" />,
+      //   commands: [
+      //     footerCopyrightText,
+      //     footerCommunityFeedbackCta,
+      //     footerCompanySignature,
+      //   ],
+      // },
+      // htmlCodeBlock,
     ],
   },
 ];

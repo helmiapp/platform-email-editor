@@ -1,7 +1,9 @@
-import { LogoWithCoverImageIcon } from '@/editor/components/icons/logo-with-cover-image';
-import { BlockItem } from './types';
 import { LogoWithTextHorizonIcon } from '@/editor/components/icons/logo-with-text-horizon';
 import { LogoWithTextVerticalIcon } from '@/editor/components/icons/logo-with-text-vertical';
+import { BlockItem } from './types';
+
+const helmiLogo =
+  'https://cdn.prod.website-files.com/64246b8770faa4441cf38007/662fdb6ff33f279e22e16969_Helmi%20BALL.svg';
 
 export const headerLogoWithTextHorizontal: BlockItem = {
   title: 'Logo with Text (Horizontal)',
@@ -27,7 +29,7 @@ export const headerLogoWithTextHorizontal: BlockItem = {
               {
                 type: 'image',
                 attrs: {
-                  src: 'https://maily.to/brand/logo.png',
+                  src: helmiLogo,
                   alt: null,
                   title: null,
                   width: '32',
@@ -85,7 +87,7 @@ export const headerLogoWithTextVertical: BlockItem = {
         {
           type: 'image',
           attrs: {
-            src: 'https://maily.to/brand/logo.png',
+            src: helmiLogo,
             alt: null,
             title: null,
             width: '48',
@@ -101,105 +103,105 @@ export const headerLogoWithTextVertical: BlockItem = {
         {
           type: 'heading',
           attrs: { textAlign: 'center', level: 2, showIfKey: null },
-          content: [{ type: 'text', text: 'Maily' }],
+          content: [{ type: 'text', text: 'Helmi' }],
         },
       ])
       .run();
   },
 };
 
-export const headerLogoWithCoverImage: BlockItem = {
-  title: 'Logo with Cover Image',
-  description: 'Logo and a cover image',
-  searchTerms: ['logo', 'cover', 'image'],
-  icon: <LogoWithCoverImageIcon className="mly-h-4 mly-w-4" />,
-  command: ({ editor, range }) => {
-    const todayFormatted = new Date().toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    });
+// export const headerLogoWithCoverImage: BlockItem = {
+//   title: 'Logo with Cover Image',
+//   description: 'Logo and a cover image',
+//   searchTerms: ['logo', 'cover', 'image'],
+//   icon: <LogoWithCoverImageIcon className="mly-h-4 mly-w-4" />,
+//   command: ({ editor, range }) => {
+//     const todayFormatted = new Date().toLocaleDateString('en-US', {
+//       year: 'numeric',
+//       month: 'short',
+//       day: 'numeric',
+//     });
 
-    editor
-      .chain()
-      .deleteRange(range)
-      .insertContent([
-        {
-          type: 'image',
-          attrs: {
-            src: 'https://maily.to/og-image.png',
-            alt: null,
-            title: null,
-            width: 600,
-            height: 314,
-            alignment: 'center',
-            externalLink: null,
-            isExternalLinkVariable: false,
-            isSrcVariable: false,
-            showIfKey: null,
-          },
-        },
-        {
-          type: 'columns',
-          attrs: { showIfKey: null, gap: 8 },
-          content: [
-            {
-              type: 'column',
-              attrs: {
-                columnId: '36de3eda-0677-47c3-a8b7-e071dec9ce30',
-                width: 'auto',
-                verticalAlign: 'middle',
-              },
-              content: [
-                {
-                  type: 'image',
-                  attrs: {
-                    src: 'https://maily.to/brand/logo.png',
-                    alt: null,
-                    title: null,
-                    width: '48',
-                    height: '48',
-                    alignment: 'left',
-                    externalLink: null,
-                    isExternalLinkVariable: false,
-                    isSrcVariable: false,
-                    showIfKey: null,
-                  },
-                },
-              ],
-            },
-            {
-              type: 'column',
-              attrs: {
-                columnId: '6feb593e-374a-4479-a1c7-872c60c2f4e0',
-                width: 'auto',
-                verticalAlign: 'middle',
-              },
-              content: [
-                {
-                  type: 'paragraph',
-                  attrs: { textAlign: 'right', showIfKey: null },
-                  content: [
-                    {
-                      type: 'text',
-                      marks: [{ type: 'bold' }],
-                      text: 'Weekly Newsletter',
-                    },
-                    { type: 'hardBreak' },
-                    {
-                      type: 'text',
-                      marks: [
-                        { type: 'textStyle', attrs: { color: '#929292' } },
-                      ],
-                      text: todayFormatted,
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ])
-      .run();
-  },
-};
+//     editor
+//       .chain()
+//       .deleteRange(range)
+//       .insertContent([
+//         {
+//           type: 'image',
+//           attrs: {
+//             src: helmiLogo,
+//             alt: null,
+//             title: null,
+//             width: 600,
+//             height: 314,
+//             alignment: 'center',
+//             externalLink: null,
+//             isExternalLinkVariable: false,
+//             isSrcVariable: false,
+//             showIfKey: null,
+//           },
+//         },
+//         {
+//           type: 'columns',
+//           attrs: { showIfKey: null, gap: 8 },
+//           content: [
+//             {
+//               type: 'column',
+//               attrs: {
+//                 columnId: '36de3eda-0677-47c3-a8b7-e071dec9ce30',
+//                 width: 'auto',
+//                 verticalAlign: 'middle',
+//               },
+//               content: [
+//                 {
+//                   type: 'image',
+//                   attrs: {
+//                     src: helmiLogo,
+//                     alt: null,
+//                     title: null,
+//                     width: '48',
+//                     height: '48',
+//                     alignment: 'left',
+//                     externalLink: null,
+//                     isExternalLinkVariable: false,
+//                     isSrcVariable: false,
+//                     showIfKey: null,
+//                   },
+//                 },
+//               ],
+//             },
+//             {
+//               type: 'column',
+//               attrs: {
+//                 columnId: '6feb593e-374a-4479-a1c7-872c60c2f4e0',
+//                 width: 'auto',
+//                 verticalAlign: 'middle',
+//               },
+//               content: [
+//                 {
+//                   type: 'paragraph',
+//                   attrs: { textAlign: 'right', showIfKey: null },
+//                   content: [
+//                     {
+//                       type: 'text',
+//                       marks: [{ type: 'bold' }],
+//                       text: 'Weekly Newsletter',
+//                     },
+//                     { type: 'hardBreak' },
+//                     {
+//                       type: 'text',
+//                       marks: [
+//                         { type: 'textStyle', attrs: { color: '#929292' } },
+//                       ],
+//                       text: todayFormatted,
+//                     },
+//                   ],
+//                 },
+//               ],
+//             },
+//           ],
+//         },
+//       ])
+//       .run();
+//   },
+// };

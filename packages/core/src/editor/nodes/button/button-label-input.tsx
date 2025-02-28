@@ -7,10 +7,7 @@ import {
 } from '@/editor/provider';
 import { processVariables } from '@/editor/utils/variable';
 import { Editor } from '@tiptap/core';
-import { BracesIcon } from 'lucide-react';
-import { useMemo } from 'react';
-import { useState } from 'react';
-import { useRef } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 type ButtonLabelInputProps = {
   value: string;
@@ -78,7 +75,7 @@ export function ButtonLabelInput(props: ButtonLabelInputProps) {
           autoCompleteOptions={autoCompleteOptions}
           ref={linkInputRef}
           placeholder={placeholderUrl}
-          className="mly-h-7 mly-w-40 mly-rounded-md mly-px-2 mly-pr-6 mly-text-sm mly-text-midnight-gray hover:mly-bg-soft-gray focus:mly-bg-soft-gray focus:mly-outline-none"
+          className="mly-min-h-7 mly-w-40 mly-flex-1 mly-rounded-md mly-px-2 mly-pr-6 mly-text-sm mly-text-midnight-gray hover:mly-bg-soft-gray focus:mly-bg-soft-gray focus:mly-outline-none"
           triggerChar={variableTriggerCharacter}
           onSelectOption={(value) => {
             const isVariable = autoCompleteOptions.includes(value) ?? false;

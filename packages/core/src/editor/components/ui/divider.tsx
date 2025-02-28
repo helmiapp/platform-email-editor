@@ -7,7 +7,7 @@ type DividerProps = {
 };
 
 export function Divider({
-  orientation = 'horizontal',
+  orientation = 'vertical',
   type = 'solid',
   className,
 }: DividerProps) {
@@ -16,8 +16,7 @@ export function Divider({
       className={cn(
         'mly-bg-gray-200',
         orientation === 'horizontal' && 'mly-h-[1px] mly-w-full',
-        orientation === 'vertical' &&
-          'mly-grow-1 mly-h-full mly-min-h-[1px] mly-w-[1px]',
+        orientation === 'vertical' && 'mly-min-h-[1px] mly-w-[1px] mly-grow',
         type === 'dashed' && 'mly-border-dashed',
         className
       )}

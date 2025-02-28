@@ -932,7 +932,7 @@ export class Maily {
           style={{
             marginTop: '0px',
             marginBottom: shouldRemoveBottomMargin ? '0' : '20px',
-            paddingLeft: '26px',
+            paddingLeft: '16px',
             listStyleType: 'decimal',
           }}
         >
@@ -965,7 +965,7 @@ export class Maily {
           style={{
             marginTop: '0px',
             marginBottom: shouldRemoveBottomMargin ? '0' : '20px',
-            paddingLeft: '26px',
+            paddingLeft: '16px',
             listStyleType: 'disc',
           }}
         >

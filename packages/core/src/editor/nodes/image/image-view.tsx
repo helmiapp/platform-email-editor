@@ -155,8 +155,8 @@ export function ImageView(props: NodeViewProps) {
       style={{
         ...(hasImageSrc && status === 'loaded'
           ? {
-              width: `${width}px`,
-              height: `${height}px`,
+              width: width === '100%' ? '100%' : `${width}px`,
+              height: height === '100%' ? '100%' : `${height}px`,
               ...resizingStyle,
             }
           : {}),

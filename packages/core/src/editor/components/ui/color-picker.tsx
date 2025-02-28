@@ -1,11 +1,11 @@
 'use client';
 
-import { HexColorPicker, HexColorInput } from 'react-colorful';
-import { Popover, PopoverContent, PopoverTrigger } from '../popover';
-import { BaseButton } from '../base-button';
-import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip';
 import { cn } from '@/editor/utils/classname';
 import { ReactNode } from 'react';
+import { HexColorInput, HexColorPicker } from 'react-colorful';
+import { BaseButton } from '../base-button';
+import { Popover, PopoverContent, PopoverTrigger } from '../popover';
+import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip';
 
 type ColorPickerProps = {
   color: string;
@@ -54,13 +54,13 @@ export function ColorPicker(props: ColorPickerProps) {
       {children || (
         <BaseButton
           variant="ghost"
-          className="!mly-size-7 mly-shrink-0"
+          className="mly-shrink-0"
           size="sm"
           type="button"
         >
           <div
             className={cn(
-              'mly-h-4 mly-w-4 mly-shrink-0 mly-rounded mly-border-2 mly-border-gray-700',
+              'mly-h-3 mly-w-3 mly-shrink-0 mly-rounded mly-border-2 mly-border-gray-700',
               className
             )}
             style={{

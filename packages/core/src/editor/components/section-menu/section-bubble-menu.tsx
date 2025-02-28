@@ -85,7 +85,7 @@ export function SectionBubbleMenu(props: EditorBubbleMenuProps) {
   return (
     <BubbleMenu
       {...bubbleMenuProps}
-      className="mly-flex mly-items-stretch mly-rounded-lg mly-border mly-border-slate-200 mly-bg-white mly-p-0.5 mly-shadow-md"
+      className="mly-flex mly-items-stretch mly-gap-1 mly-rounded-lg mly-border mly-border-slate-200 mly-bg-white mly-p-0.5 mly-shadow-md"
     >
       <TooltipProvider>
         <AlignmentSwitch
@@ -101,7 +101,7 @@ export function SectionBubbleMenu(props: EditorBubbleMenuProps) {
 
         <div className="mly-flex mly-space-x-0.5">
           <Select
-            label="Border Radius"
+            // label="Border Radius"
             value={String(state.currentBorderRadius)}
             options={borderRadiusOptions}
             onValueChange={(value) => {
@@ -114,7 +114,7 @@ export function SectionBubbleMenu(props: EditorBubbleMenuProps) {
           />
 
           <Select
-            label="Border Width"
+            // label="Border Width"
             value={String(state.currentBorderWidth)}
             options={[
               { value: '0', label: 'None' },
@@ -135,9 +135,9 @@ export function SectionBubbleMenu(props: EditorBubbleMenuProps) {
         <Divider />
 
         <Select
+          // label="Margin"
           icon={MarginIcon}
           iconClassName="mly-stroke-[1.2] mly-size-3.5"
-          label="Margin"
           value={String(state.currentMarginTop)}
           options={[
             { value: '0', label: 'None' },
@@ -162,9 +162,9 @@ export function SectionBubbleMenu(props: EditorBubbleMenuProps) {
         <Divider />
 
         <Select
+          // label="Padding"
           icon={PaddingIcon}
           iconClassName="mly-stroke-[1]"
-          label="Padding"
           value={String(state.currentPaddingTop)}
           options={[
             { value: '0', label: 'None' },
@@ -200,7 +200,7 @@ export function SectionBubbleMenu(props: EditorBubbleMenuProps) {
           >
             <BaseButton
               variant="ghost"
-              className="!mly-size-7 mly-shrink-0"
+              className="mly-shrink-0"
               size="sm"
               type="button"
             >

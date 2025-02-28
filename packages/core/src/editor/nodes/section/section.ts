@@ -300,33 +300,39 @@ export const SectionExtension = Node.create({
     } = HTMLAttributes;
 
     return [
-      'table',
+      'div',
       {
-        'data-type': this.name,
-        border: 0,
-        cellpadding: 0,
-        cellspacing: 0,
-        class: 'mly-w-full mly-border-separate mly-relative mly-table-fixed',
-        style: `margin-top: ${marginTop}px; margin-right: ${marginRight}px; margin-bottom: ${marginBottom}px; margin-left: ${marginLeft}px;`,
+        style: `margin: ${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px;`,
       },
       [
-        'tbody',
+        'table',
         {
-          class: 'mly-w-full',
+          'data-type': this.name,
+          border: 0,
+          cellpadding: 0,
+          cellspacing: 0,
+          class: 'mly-w-full mly-border-separate mly-relative mly-table-fixed',
+          style: 'width: 100%; flex-grow: 1;',
         },
         [
-          'tr',
+          'tbody',
           {
             class: 'mly-w-full',
           },
           [
-            'td',
-            mergeAttributes(HTMLAttributes, {
-              'data-type': 'section-cell',
-              style: 'border-style: solid',
-              class: 'mly-w-full [text-align:revert-layer]',
-            }),
-            0,
+            'tr',
+            {
+              class: 'mly-w-full',
+            },
+            [
+              'td',
+              mergeAttributes(HTMLAttributes, {
+                'data-type': 'section-cell',
+                style: 'border-style: solid;',
+                class: 'mly-w-full [text-align:revert-layer]',
+              }),
+              0,
+            ],
           ],
         ],
       ],
@@ -336,7 +342,7 @@ export const SectionExtension = Node.create({
   parseHTML() {
     return [
       {
-        tag: 'table[data-type="section"]',
+        tag: 'div > table[data-type="section"]',
       },
     ];
   },

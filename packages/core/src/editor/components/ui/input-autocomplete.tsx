@@ -2,12 +2,11 @@ import {
   VariablePopover,
   VariablePopoverRef,
 } from '@/editor/nodes/variable/variable-popover';
-import { useMailyContext } from '@/editor/provider';
 import { cn } from '@/editor/utils/classname';
 import { AUTOCOMPLETE_PASSWORD_MANAGERS_OFF } from '@/editor/utils/constants';
 import { useOutsideClick } from '@/editor/utils/use-outside-click';
 import { CornerDownLeft } from 'lucide-react';
-import { forwardRef, HTMLAttributes, useMemo, useState, useRef } from 'react';
+import { forwardRef, HTMLAttributes, useRef } from 'react';
 
 type InputAutocompleteProps = HTMLAttributes<HTMLInputElement> & {
   value: string;
@@ -47,7 +46,7 @@ export const InputAutocomplete = forwardRef<
 
   return (
     <div className={cn('mly-relative')} ref={containerRef}>
-      <label className="mly-relative">
+      <label className="mly-relative mly-h-full">
         <input
           {...AUTOCOMPLETE_PASSWORD_MANAGERS_OFF}
           placeholder="e.g. items"
@@ -59,7 +58,7 @@ export const InputAutocomplete = forwardRef<
             onValueChange(e.target.value);
           }}
           className={cn(
-            'mly-h-7 mly-w-40 mly-rounded-md mly-bg-white mly-px-2 mly-pr-6 mly-text-sm mly-text-midnight-gray hover:mly-bg-soft-gray focus:mly-bg-soft-gray focus:mly-outline-none',
+            'mly-h-full mly-min-h-7 mly-w-40 mly-rounded-md mly-bg-white mly-px-2 mly-pr-6 mly-text-sm mly-text-midnight-gray hover:mly-bg-soft-gray focus:mly-bg-soft-gray focus:mly-outline-none',
             className
           )}
           onKeyDown={(e) => {

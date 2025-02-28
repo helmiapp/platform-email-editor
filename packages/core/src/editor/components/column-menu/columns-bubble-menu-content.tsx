@@ -31,7 +31,7 @@ export function ColumnsBubbleMenuContent(props: ColumnsBubbleMenuProps) {
 
   return (
     <TooltipProvider>
-      <div className="mly-flex mly-items-stretch">
+      <div className="mly-flex mly-items-stretch mly-gap-0.5">
         {state.isColumnActive && (
           <>
             <ColumnsWidthConfig
@@ -66,7 +66,7 @@ export function ColumnsBubbleMenuContent(props: ColumnsBubbleMenuProps) {
 
         <Select
           icon={Space}
-          label="Columns Gap"
+          // label="Columns Gap"
           value={state.currentColumnsGap}
           options={[
             { value: '0', label: 'None' },

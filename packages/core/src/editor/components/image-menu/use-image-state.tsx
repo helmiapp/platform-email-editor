@@ -6,30 +6,26 @@ export const useImageState = (editor: Editor) => {
   const states = useEditorState({
     editor,
     selector: ({ editor }) => {
+      const imageAttrs = editor.getAttributes('image');
       return {
-        width: editor.getAttributes('image').width,
-        height: editor.getAttributes('image').height,
+        width: imageAttrs.width,
+        height: imageAttrs.height,
         isImageActive: editor.isActive('image'),
         isLogoActive: editor.isActive('logo'),
         alignment:
-          editor.getAttributes('image')?.alignment ||
-          editor.getAttributes('logo')?.alignment,
-
+          imageAttrs?.alignment || editor.getAttributes('logo')?.alignment,
+        isMaxWidth: imageAttrs?.isMaxWidth || false,
         logoSize: editor.getAttributes('logo')?.size || DEFAULT_LOGO_SIZE,
-        imageSrc:
-          editor.getAttributes('image')?.src ||
-          editor.getAttributes('logo')?.src ||
-          '',
+        imageSrc: imageAttrs?.src || editor.getAttributes('logo')?.src || '',
         isSrcVariable:
-          editor.getAttributes('image')?.isSrcVariable ??
+          imageAttrs?.isSrcVariable ??
           editor.getAttributes('logo')?.isSrcVariable ??
           false,
-        imageExternalLink: editor.getAttributes('image')?.externalLink || '',
-        isExternalLinkVariable:
-          editor.getAttributes('image')?.isExternalLinkVariable,
+        imageExternalLink: imageAttrs?.externalLink || '',
+        isExternalLinkVariable: imageAttrs?.isExternalLinkVariable,
 
         currentShowIfKey:
-          editor.getAttributes('image')?.showIfKey ||
+          imageAttrs?.showIfKey ||
           editor.getAttributes('logo')?.showIfKey ||
           '',
       };

@@ -521,11 +521,11 @@ export class Maily {
         <Head>
           <Font
             fallbackFontFamily="sans-serif"
-            fontFamily="Inter"
+            fontFamily="Open Sans"
             fontStyle="normal"
             fontWeight={400}
             webFont={{
-              url: 'https://rsms.me/inter/font-files/Inter-Regular.woff2?v=3.19',
+              url: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap',
               format: 'woff2',
             }}
           />
@@ -927,7 +927,11 @@ export class Maily {
     );
 
     return (
-      <Container>
+      <Container
+        style={{
+          maxWidth: '100%',
+        }}
+      >
         <ol
           style={{
             marginTop: '0px',
@@ -1915,8 +1919,8 @@ export class Maily {
                 >
                   <Img
                     src={social.icon}
-                    width={size * 2}
-                    height={size * 2}
+                    width={size}
+                    height={size}
                     alt={social.type}
                     style={{
                       borderRadius: '50%',
@@ -1929,6 +1933,23 @@ export class Maily {
           </Column>
         </Row>
       </Section>
+    );
+  }
+
+  private rawHtml(node: JSONContent, options?: NodeOptions): JSX.Element {
+    const show = this.shouldShow(node, options);
+    if (!show) {
+      return <></>;
+    }
+
+    const html = node.content?.reduce((acc, n) => acc + (n?.text || ''), '') || '';
+
+    return (
+      <div
+        dangerouslySetInnerHTML={{
+          __html: html
+        }}
+      />
     );
   }
 }

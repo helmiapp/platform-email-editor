@@ -519,13 +519,14 @@ export class Maily {
     const markup = (
       <Html {...htmlProps}>
         <Head>
+          <link href="https://fonts.googleapis.com/css?family=Open Sans" rel="stylesheet" />
           <Font
             fallbackFontFamily="sans-serif"
             fontFamily="Open Sans"
             fontStyle="normal"
             fontWeight={400}
             webFont={{
-              url: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap',
+              url: 'https://fonts.googleapis.com/css?family=Open Sans',
               format: 'woff2',
             }}
           />
@@ -1950,6 +1951,46 @@ export class Maily {
           __html: html
         }}
       />
+    );
+  }
+
+  private helmiFooter(node: JSONContent, options?: NodeOptions): JSX.Element {
+    const show = this.shouldShow(node, options);
+    if (!show) {
+      return <></>;
+    }
+
+    const { src } = node.attrs || {};
+
+    return (
+      <Section style={{ textAlign: 'center', padding: '20px 0' }}>
+        <Row>
+          <Column>
+            <Link href="https://helmigroup.com" target="_blank">
+                <Img
+                  src={src}
+                  alt="Powered by Helmi"
+                  height={40}
+                style={{
+                  margin: '0 auto',
+                  display: 'block',
+                }}
+              />
+            </Link>
+            <Text
+              style={{
+                fontSize: '12px',
+                color: '#6B7280',
+                marginTop: '8px',
+                textAlign: 'center',
+                ...antialiased,
+              }}
+            >
+              © {new Date().getFullYear()} Helmi Tech Inc. All rights reserved.
+            </Text>
+          </Column>
+        </Row>
+      </Section>
     );
   }
 }

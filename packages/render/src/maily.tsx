@@ -1981,7 +1981,7 @@ export class Maily {
               style={{
                 fontSize: '12px',
                 color: '#6B7280',
-                marginTop: '8px',
+                margin: '0',
                 textAlign: 'center',
                 ...antialiased,
               }}

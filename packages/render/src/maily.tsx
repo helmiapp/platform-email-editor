@@ -519,7 +519,10 @@ export class Maily {
     const markup = (
       <Html {...htmlProps}>
         <Head>
-          <link href="https://fonts.googleapis.com/css?family=Open Sans" rel="stylesheet" />
+          <link
+            href="https://fonts.googleapis.com/css?family=Open Sans"
+            rel="stylesheet"
+          />
           <Font
             fallbackFontFamily="sans-serif"
             fontFamily="Open Sans"
@@ -1943,12 +1946,13 @@ export class Maily {
       return <></>;
     }
 
-    const html = node.content?.reduce((acc, n) => acc + (n?.text || ''), '') || '';
+    const html =
+      node.content?.reduce((acc, n) => acc + (n?.text || ''), '') || '';
 
     return (
       <div
         dangerouslySetInnerHTML={{
-          __html: html
+          __html: html,
         }}
       />
     );
@@ -1967,10 +1971,10 @@ export class Maily {
         <Row>
           <Column>
             <Link href="https://helmigroup.com" target="_blank">
-                <Img
-                  src={src}
-                  alt="Powered by Helmi"
-                  height={40}
+              <Img
+                src={src}
+                alt="Powered by Helmi"
+                height={40}
                 style={{
                   margin: '0 auto',
                   display: 'block',
@@ -1986,7 +1990,8 @@ export class Maily {
                 ...antialiased,
               }}
             >
-              © {new Date().getFullYear()} Helmi Tech Inc. All rights reserved.
+              © {new Date().getFullYear()} Helmi Technologies, Inc. All rights
+              reserved.
             </Text>
           </Column>
         </Row>

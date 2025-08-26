@@ -1,12 +1,7 @@
-import { Editor } from '@tiptap/core';
 import { BubbleMenu } from '@tiptap/react';
 import { sticky } from 'tippy.js';
 import { EditorBubbleMenuProps } from '../text-menu/text-bubble-menu';
 import { SocialBubbleMenuContent } from './social-bubble-menu-content';
-
-{
-  editor: Editor;
-}
 
 export const SocialBubbleMenu = (props: EditorBubbleMenuProps) => {
   const { appendTo, editor } = props;

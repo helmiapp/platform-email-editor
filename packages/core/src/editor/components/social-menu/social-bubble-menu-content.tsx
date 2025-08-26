@@ -47,6 +47,10 @@ export const SocialBubbleMenuContent = ({
       const currentSocials = [...(socials || [])];
       const social = currentSocials[index];
 
+      if (!social) {
+        return;
+      }
+
       if (social.type === 'custom') {
         try {
           const domain = new URL(url).hostname;
@@ -137,7 +141,7 @@ export const SocialBubbleMenuContent = ({
                 <input
                   type="url"
                   value={draftUrls[index] ?? social.url}
-                  onChange={(e) => updateSocialUrl(index, e.target.value)}
+                  onChange={(e) => updateSocialUrl(index, e.target.value, true)}
                   className="focus:mly-border-primary focus:mly-ring-primary mly-flex-1 mly-rounded mly-border mly-px-2 mly-py-1 mly-text-sm focus:mly-outline-none focus:mly-ring-1"
                   placeholder={`Enter ${social.type} URL...`}
                 />
